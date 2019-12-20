@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"strconv"
 	"strings"
 )
 
@@ -27,6 +28,9 @@ func main() {
 		text = strings.Replace(text, "\n", "", -1)
 
 		result := search.DoSearch(text)
-		fmt.Println(result)
+
+		for index := 0; index < len(result); index++ {
+			fmt.Println(strconv.Itoa(result[index].ID) + ": " + result[index].Name)
+		}
 	}
 }

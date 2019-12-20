@@ -35,10 +35,15 @@ type Node struct {
 	Complete bool
 }
 
+type Result struct {
+	Name string
+	ID   int
+}
+
 // A NewNode
-func NewNode(iD int, value rune, complete bool) *Node {
+func NewNode(ID int, value rune, complete bool) *Node {
 	node := Node{
-		ID:       iD,
+		ID:       ID,
 		Value:    value,
 		Complete: complete}
 	return &node
@@ -49,7 +54,7 @@ func NewSearch(filePath string) *Node {
 	baseNode := *NewNode(0, '#', false)
 
 	//get data array from json
-	var pages = getData(filePath)
+	var pages = loadData(filePath)
 
 	//now for each page
 	for i := 0; i < len(pages); i++ {
@@ -85,7 +90,7 @@ func NewSearch(filePath string) *Node {
 			}
 
 			node.Complete = true
-			node.ID =
+			node.ID = pages[i].ID
 		}
 	}
 
@@ -93,7 +98,7 @@ func NewSearch(filePath string) *Node {
 }
 
 //scan through node trie and return all possibilities
-func (search *Node) DoSearch(term string) []string {
+func (search *Node) DoSearch(term string) []Result {
 	result := make([]string, 0)
 
 	fmt.Println("Searching with " + term)
@@ -111,7 +116,6 @@ func (search *Node) DoSearch(term string) []string {
 
 			thisChar := search.Children[index].Value
 
-			//fmt.Println(string(thisChar) + ", " + string(term[termIndex]))
 			//move along
 			if thisChar == rune(term[termIndex]) {
 				search = search.Children[index]
@@ -121,23 +125,22 @@ func (search *Node) DoSearch(term string) []string {
 			}
 		}
 
-		if !found {
-			return result
-		} else {
+		if found {
 			prefix = prefix + string(search.Value)
 		}
 	}
 
-	//return result
+	//return result with node from end of term and prefix
 	return getTree(search, result[0])
 }
 
-func getTree(node *Node, str string) []string {
-	result := make([]string, 0)
+func getTree(node *Node, str string) []Result {
+	result := make([]Result, 0)
 	str = str + string(node.Value)
 
 	if node.Complete {
-		result = append(result, str)
+		item := Result{Name: str, ID: node.ID}
+		result = append(result, item)
 	}
 
 	if len(node.Children) > 0 {
@@ -149,7 +152,7 @@ func getTree(node *Node, str string) []string {
 	return result
 }
 
-func getData(path string) []Page {
+func loadData(path string) []Page {
 	var pages []Page
 	jsonFile, err := os.Open(path)
 
