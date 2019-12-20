@@ -34,6 +34,8 @@ Bugs:
 860: equipppment,
 993: equipppped
 
+error is in tree creation
+
 */
 
 import (
@@ -92,6 +94,10 @@ func NewSearch(filePath string) *Node {
 			//start at base node
 			node := &baseNode
 
+			//// BUG: 2260: equipment,
+			////2077: equipping
+			////1315: equippment
+
 			//add to tries
 			//for each character in a word look for it in the top level
 			for i, rune := range words[j] {
@@ -104,6 +110,7 @@ func NewSearch(filePath string) *Node {
 					if thisChar == rune {
 						exists = true
 						node = node.Children[k]
+						break
 					}
 				}
 
@@ -114,7 +121,7 @@ func NewSearch(filePath string) *Node {
 					node.Children = append(node.Children, newNode)
 					node = newNode
 				}
-			}
+			} // end char
 
 			node.Complete = true
 			node.ID = pages[i].ID
