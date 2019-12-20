@@ -130,7 +130,7 @@ func (search *Node) DoSearch(term string) []Result {
 		}
 	}
 
-	//return result with node from end of term and prefix
+	//return results with node from end of term and prefix
 	return getTree(search, result[0])
 }
 

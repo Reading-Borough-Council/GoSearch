@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"os"
 	"strconv"
-	"strings"
 )
 
 func main() {
@@ -23,9 +22,6 @@ func main() {
 	for {
 		fmt.Print("-> ")
 		text, _ := reader.ReadString('\n')
-
-		// convert CRLF to LF
-		text = strings.Replace(text, "\n", "", -1)
 
 		result := search.DoSearch(text)
 
