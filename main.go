@@ -7,9 +7,10 @@ import (
 	"strconv"
 )
 
+// main live feedback
 func main() {
 	fmt.Println("Planting Seed")
-	search := NewSearch("data2.json")
+	search := NewSearch("data.json")
 	reader := bufio.NewReader(os.Stdin)
 
 	fmt.Printf("Print Base Level\n")

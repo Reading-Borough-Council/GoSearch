@@ -1,13 +1,38 @@
 package main
 
 /*
+Author: magicmilo
+Date: 20/12/2019
+
 This package is used for instant comprehensive search
 Data is loaded from json
 Partial strings are received and queried against articles and posts data
 If a suitable match is found at an adequate strength then the article/post Title
 and an extract is returned
 
+This already exists:
+It's fun
+
 Populating:
+Provide a json file with parameters of id, title and content
+
+Bugs:
+- Double characters sometime duplicated i.e equip
+2260: equipment,
+2077: equipping
+1315: equippment
+1247: equippment.</td>
+1247: equippped
+828: equipppment
+846: equipppment.
+736: equipppment.</p>
+840: equipppment</a>
+1201: equipppment</a></p>
+1174: equipppment</p>
+846: equipppment</h2>
+781: equipppment</li>
+860: equipppment,
+993: equipppped
 
 */
 
@@ -97,7 +122,7 @@ func NewSearch(filePath string) *Node {
 	return &baseNode
 }
 
-//scan through node trie and return all possibilities
+// DoSearch scan through node trie and return all possibilities
 func (search *Node) DoSearch(term string) []Result {
 	result := make([]string, 0)
 
@@ -112,6 +137,7 @@ func (search *Node) DoSearch(term string) []Result {
 	for termIndex := 0; termIndex < len(term)-1; termIndex++ {
 		found := false
 
+		//look for matching node
 		for index := 0; index < len(search.Children); index++ {
 
 			thisChar := search.Children[index].Value
@@ -134,6 +160,7 @@ func (search *Node) DoSearch(term string) []Result {
 	return getTree(search, result[0])
 }
 
+// getTree from end of term node find all branches
 func getTree(node *Node, str string) []Result {
 	result := make([]Result, 0)
 	str = str + string(node.Value)
@@ -152,6 +179,7 @@ func getTree(node *Node, str string) []Result {
 	return result
 }
 
+// loadData, does what it says
 func loadData(path string) []Page {
 	var pages []Page
 	jsonFile, err := os.Open(path)

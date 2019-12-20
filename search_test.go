@@ -8,32 +8,26 @@ import (
 func TestSearch(t *testing.T) {
 
 	fmt.Println("Planting Seed")
-	search := NewSearch("data.json")
+	search := NewSearch("testdata.json")
 	fmt.Println("Tree Grown")
 
-	text := "be"
+	text := "so"
 
 	result := search.DoSearch(text)
-	fmt.Println("Result for: " + text)
-	for _, res := range result {
-		fmt.Println(res)
-	}
 
-	expected := [3]string{"bean", "bear", "bertie"}
+	expected := [4]string{"society", "social", "some", "so"}
 
-	fmt.Println("Tests")
+	fmt.Println("Run Tests w/ search: " + text)
 	for _, str := range expected {
 		found := false
-		fmt.Println(str)
 		for _, res := range result {
-			if str == res {
-				fmt.Println("Found")
+			if str == res.Name {
 				found = true
 			}
 		}
 
 		if !found {
-			t.Error("Fail")
+			t.Error("Fail, didn't get " + str)
 		}
 	}
 }
