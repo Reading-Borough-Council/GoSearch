@@ -45,14 +45,14 @@ import (
 	"strings"
 )
 
-// Json struct
+//Page Json struct
 type Page struct {
 	ID      int    `json:"id"`
 	Title   string `json:"title"`
 	Content string `json:"content"`
 }
 
-// A Node
+//Node a node
 type Node struct {
 	Children []*Node
 	ID       int
@@ -60,12 +60,13 @@ type Node struct {
 	Complete bool
 }
 
+//Result with id for article
 type Result struct {
 	Name string
 	ID   int
 }
 
-// A NewNode
+//NewNode create a node w/ no children
 func NewNode(ID int, value rune, complete bool) *Node {
 	node := Node{
 		ID:       ID,
@@ -95,11 +96,11 @@ func NewSearch(filePath string) *Node {
 			//for each character in a word look for it in the top level
 			for i, rune := range words[j] {
 				exists := false
-				//scan leaves
+				//scan branches
 				for k := 0; k < len(node.Children); k++ {
 					thisChar := node.Children[k].Value
 
-					//move along
+					//traverse
 					if thisChar == rune {
 						exists = true
 						node = node.Children[k]
@@ -108,6 +109,7 @@ func NewSearch(filePath string) *Node {
 
 				//add new node to children and move to it
 				if !exists {
+					//create node with character position for no particular reason
 					newNode := NewNode(i, rune, false)
 					node.Children = append(node.Children, newNode)
 					node = newNode
