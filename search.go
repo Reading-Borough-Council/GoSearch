@@ -1,42 +1,10 @@
 package main
 
-/*
-Author: magicmilo
-Date: 20/12/2019
+// Author: Milo Bascombe (magicmilo)
+// Date: 20/12/2019
+// Copyright 2019 Reading Borough Council
 
-This package is used for instant comprehensive search
-Data is loaded from json
-Partial strings are received and queried against articles and posts data
-If a suitable match is found at an adequate strength then the article/post Title
-and an extract is returned
-
-This already exists:
-It's fun
-
-Populating:
-Provide a json file with parameters of id, title and content
-
-Bugs:
-- Double characters sometime duplicated i.e equip
-2260: equipment,
-2077: equipping
-1315: equippment
-1247: equippment.</td>
-1247: equippped
-828: equipppment
-846: equipppment.
-736: equipppment.</p>
-840: equipppment</a>
-1201: equipppment</a></p>
-1174: equipppment</p>
-846: equipppment</h2>
-781: equipppment</li>
-860: equipppment,
-993: equipppped
-
-error is in tree creation
-
-*/
+// Trie search api
 
 import (
 	"encoding/json"
@@ -85,31 +53,27 @@ func NewSearch(filePath string) *Node {
 	var pages = loadData(filePath)
 
 	//now for each page
-	for i := 0; i < len(pages); i++ {
+	for p := 0; p < len(pages); p++ {
 
 		//now add for each word
-		words := strings.Fields(pages[i].Content)
-		for j := 0; j < len(words); j++ {
+		words := strings.Fields(pages[p].Content)
+		for w := 0; w < len(words); w++ {
 
 			//start at base node
 			node := &baseNode
 
-			//// BUG: 2260: equipment,
-			////2077: equipping
-			////1315: equippment
-
 			//add to tries
 			//for each character in a word look for it in the top level
-			for i, rune := range words[j] {
+			for c, rune := range words[w] {
 				exists := false
 				//scan branches
-				for k := 0; k < len(node.Children); k++ {
-					thisChar := node.Children[k].Value
+				for b := 0; b < len(node.Children); b++ {
+					thisChar := node.Children[b].Value
 
 					//traverse
 					if thisChar == rune {
 						exists = true
-						node = node.Children[k]
+						node = node.Children[b]
 						break
 					}
 				}
@@ -117,14 +81,18 @@ func NewSearch(filePath string) *Node {
 				//add new node to children and move to it
 				if !exists {
 					//create node with character position for no particular reason
-					newNode := NewNode(i, rune, false)
+					newNode := NewNode(c, rune, false)
 					node.Children = append(node.Children, newNode)
+					//traverse
 					node = newNode
 				}
 			} // end char
 
+			// word end, complete but id should
+			// be array as there may be multiple articles with
+			// the same words 
 			node.Complete = true
-			node.ID = pages[i].ID
+			node.ID = pages[p].ID
 		}
 	}
 
@@ -133,17 +101,16 @@ func NewSearch(filePath string) *Node {
 
 // DoSearch scan through node trie and return all possibilities
 func (search *Node) DoSearch(term string) []Result {
-	result := make([]string, 0)
+	result := make([]Result, 0)
 
 	fmt.Println("Searching with " + term)
-	fmt.Println(strconv.Itoa(len(search.Children)) + " leaves.")
 
-	prefix := ""
-	result = append(result, prefix)
+	initial := Result{Name: "", ID: 0}
+	result = append(result, initial)
 
 	//scan leaves
 	//move through tree until end of search term or not found
-	for termIndex := 0; termIndex < len(term)-1; termIndex++ {
+	for termIndex := 0; termIndex < len(term); termIndex++ {
 		found := false
 
 		//look for matching node
@@ -154,25 +121,24 @@ func (search *Node) DoSearch(term string) []Result {
 			//move along
 			if thisChar == rune(term[termIndex]) {
 				search = search.Children[index]
-				result[0] = prefix
+				result[0].Name = result[0].Name + string(thisChar)
 				found = true
 				break
 			}
 		}
 
-		if found {
-			prefix = prefix + string(search.Value)
+		if !found {
+			return result
 		}
 	}
 
 	//return results with node from end of term and prefix
-	return getTree(search, result[0])
+	return getTree(search, result[0].Name)
 }
 
 // getTree from end of term node find all branches
 func getTree(node *Node, str string) []Result {
-	result := make([]Result, 0)
-	str = str + string(node.Value)
+	result := make([]Result, 0)	
 
 	if node.Complete {
 		item := Result{Name: str, ID: node.ID}
@@ -181,7 +147,7 @@ func getTree(node *Node, str string) []Result {
 
 	if len(node.Children) > 0 {
 		for index := 0; index < len(node.Children); index++ {
-			result = append(result, getTree(node.Children[index], str)...)
+			result = append(result, getTree(node.Children[index], str + string(node.Children[index].Value))...)
 		}
 	}
 
