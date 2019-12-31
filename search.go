@@ -15,39 +15,40 @@ import (
 	"strings"
 )
 
-//Page Json struct
+// Page Json struct
 type Page struct {
 	ID      int    `json:"id"`
 	Title   string `json:"title"`
 	Content string `json:"content"`
 }
 
-//Node a node
+// Node a node
 type Node struct {
 	Children []*Node
-	ID       int
+	ID       []int
 	Value    rune
+	Title	 bool
 	Complete bool
 }
 
-//Result with id for article
+// Result with id for article
 type Result struct {
+	Title string
 	Name string
 	ID   int
 }
 
-//NewNode create a node w/ no children
-func NewNode(ID int, value rune, complete bool) *Node {
+// NewNode create a node w/ no childrena
+func NewNode(value rune, title bool) *Node {
 	node := Node{
-		ID:       ID,
 		Value:    value,
-		Complete: complete}
+		Title:	  title}
 	return &node
 }
 
 // NewSearch construct a search trie
 func NewSearch(filePath string) *Node {
-	baseNode := *NewNode(0, '#', false)
+	baseNode := *NewNode('#', false)
 
 	//get data array from json
 	var pages = loadData(filePath)
@@ -55,8 +56,8 @@ func NewSearch(filePath string) *Node {
 	//now for each page
 	for p := 0; p < len(pages); p++ {
 
-		//now add for each word
-		words := strings.Fields(pages[p].Content)
+		//now add for each word of title type
+		words := strings.Fields(pages[p].Title)
 		for w := 0; w < len(words); w++ {
 
 			//start at base node
@@ -64,7 +65,7 @@ func NewSearch(filePath string) *Node {
 
 			//add to tries
 			//for each character in a word look for it in the top level
-			for c, rune := range words[w] {
+			for _, rune := range words[w] {
 				exists := false
 				//scan branches
 				for b := 0; b < len(node.Children); b++ {
@@ -81,7 +82,7 @@ func NewSearch(filePath string) *Node {
 				//add new node to children and move to it
 				if !exists {
 					//create node with character position for no particular reason
-					newNode := NewNode(c, rune, false)
+					newNode := NewNode(rune, false)
 					node.Children = append(node.Children, newNode)
 					//traverse
 					node = newNode
@@ -92,7 +93,47 @@ func NewSearch(filePath string) *Node {
 			// be array as there may be multiple articles with
 			// the same words 
 			node.Complete = true
-			node.ID = pages[p].ID
+			node.ID = append(node.ID, pages[p].ID)
+		}
+
+		//now add for each word of not title type (main body article)
+		words = strings.Fields(pages[p].Content)
+		for w := 0; w < len(words); w++ {
+
+			//start at base node
+			node := &baseNode
+
+			//add to tries
+			//for each character in a word look for it in the top level
+			for _, rune := range words[w] {
+				exists := false
+				//scan branches
+				for b := 0; b < len(node.Children); b++ {
+					thisChar := node.Children[b].Value
+
+					//traverse
+					if thisChar == rune {
+						exists = true
+						node = node.Children[b]
+						break
+					}
+				}
+
+				//add new node to children and move to it
+				if !exists {
+					//create node with character position for no particular reason
+					newNode := NewNode(rune, true)
+					node.Children = append(node.Children, newNode)
+					//traverse
+					node = newNode
+				}
+			} // end char
+
+			// word end, complete but id should
+			// be array as there may be multiple articles with
+			// the same words 
+			node.Complete = true
+			node.ID = append(node.ID, pages[p].ID)
 		}
 	}
 
@@ -110,7 +151,7 @@ func (search *Node) DoSearch(term string) []Result {
 
 	//scan leaves
 	//move through tree until end of search term or not found
-	for termIndex := 0; termIndex < len(term); termIndex++ {
+	for _, char := range term {
 		found := false
 
 		//look for matching node
@@ -119,7 +160,7 @@ func (search *Node) DoSearch(term string) []Result {
 			thisChar := search.Children[index].Value
 
 			//move along
-			if thisChar == rune(term[termIndex]) {
+			if thisChar == rune(char) {
 				search = search.Children[index]
 				result[0].Name = result[0].Name + string(thisChar)
 				found = true
@@ -141,13 +182,19 @@ func getTree(node *Node, str string) []Result {
 	result := make([]Result, 0)	
 
 	if node.Complete {
-		item := Result{Name: str, ID: node.ID}
-		result = append(result, item)
+		for _, id := range node.ID {
+			item := Result{Name: str, ID: id, Title:""}
+			if(node.Title) {
+				item.Title = str
+			}
+			
+			result = append(result, item)	
+		}
 	}
 
 	if len(node.Children) > 0 {
-		for index := 0; index < len(node.Children); index++ {
-			result = append(result, getTree(node.Children[index], str + string(node.Children[index].Value))...)
+		for _, child := range node.Children {
+			result = append(result, getTree(child, str + string(child.Value))...)
 		}
 	}
 
@@ -161,16 +208,11 @@ func loadData(path string) []Page {
 
 	if err != nil {
 		fmt.Println("Can't read file")
-	} else {
-		fmt.Println("File open")
 	}
 
 	byteValue, _ := ioutil.ReadAll(jsonFile)
-
 	json.Unmarshal(byteValue, &pages)
-
 	fmt.Println("Page count: " + strconv.Itoa(len(pages)))
-	fmt.Println("Done")
 
 	defer jsonFile.Close()
 	return pages

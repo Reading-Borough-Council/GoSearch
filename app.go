@@ -13,6 +13,7 @@ import (
 type App struct {
 	Router *mux.Router
 	Search *Node
+	Pages  []Page
 }
 
 func (a *App) Initialize() {
@@ -22,6 +23,7 @@ func (a *App) Initialize() {
 
 	a.Router = mux.NewRouter()
 	a.Search = search
+	a.Pages = loadData("data.json")
 	a.initializeRoutes()
 }
 
@@ -31,13 +33,32 @@ func (a *App) Run(port int) {
 
 func (a *App) initializeRoutes() {
 	a.Router.HandleFunc("/v1/{term}", a.searchHandler).Methods("GET")
+	a.Router.HandleFunc("/v1/ping", a.ping).Methods("GET")
 }
 
 func (a *App) searchHandler(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	result := a.Search.DoSearch(vars["term"])
-	
+
+	for index := 0; index < len(result); index++ {
+		result[index].Title = a.getArticleTitle(result[index].ID)
+	}
+
 	respondWithJSON(w, http.StatusOK, result)
+}
+
+func (a *App) ping(w http.ResponseWriter, r *http.Request) {
+
+	respondWithJSON(w, http.StatusOK, "Success")
+}
+
+func (a *App) getArticleTitle(id int) string {
+	for index := 0; index < len(a.Pages); index++ {
+		if id == a.Pages[index].ID {
+			return a.Pages[index].Title
+		}		
+	}
+	return ""
 }
 
 func respondWithError(w http.ResponseWriter, code int, message string) {
