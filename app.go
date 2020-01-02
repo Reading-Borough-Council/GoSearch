@@ -40,9 +40,9 @@ func (a *App) searchHandler(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	result := a.Search.DoSearch(vars["term"])
 
-	for index := 0; index < len(result); index++ {
-		result[index].Title = a.getArticleTitle(result[index].ID)
-	}
+	// for index := 0; index < len(result); index++ {
+	// 	result[index].Title = a.getArticleTitle(result[index].ID)
+	// }
 
 	respondWithJSON(w, http.StatusOK, result)
 }

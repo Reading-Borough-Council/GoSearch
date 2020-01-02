@@ -27,28 +27,25 @@ type Node struct {
 	Children []*Node
 	ID       []int
 	Value    rune
-	Title	 bool
 	Complete bool
 }
 
 // Result with id for article
 type Result struct {
 	Title string
-	Name string
-	ID   int
+	Name  string
+	ID    []int
 }
 
 // NewNode create a node w/ no childrena
-func NewNode(value rune, title bool) *Node {
-	node := Node{
-		Value:    value,
-		Title:	  title}
+func NewNode(value rune) *Node {
+	node := Node{Value: value}
 	return &node
 }
 
 // NewSearch construct a search trie
 func NewSearch(filePath string) *Node {
-	baseNode := *NewNode('#', false)
+	baseNode := *NewNode('#')
 
 	//get data array from json
 	var pages = loadData(filePath)
@@ -82,7 +79,7 @@ func NewSearch(filePath string) *Node {
 				//add new node to children and move to it
 				if !exists {
 					//create node with character position for no particular reason
-					newNode := NewNode(rune, false)
+					newNode := NewNode(rune)
 					node.Children = append(node.Children, newNode)
 					//traverse
 					node = newNode
@@ -91,50 +88,50 @@ func NewSearch(filePath string) *Node {
 
 			// word end, complete but id should
 			// be array as there may be multiple articles with
-			// the same words 
+			// the same words
 			node.Complete = true
 			node.ID = append(node.ID, pages[p].ID)
 		}
 
-		//now add for each word of not title type (main body article)
-		words = strings.Fields(pages[p].Content)
-		for w := 0; w < len(words); w++ {
+		// //now add for each word of not title type (main body article)
+		// words = strings.Fields(pages[p].Content)
+		// for w := 0; w < len(words); w++ {
 
-			//start at base node
-			node := &baseNode
+		// 	//start at base node
+		// 	node := &baseNode
 
-			//add to tries
-			//for each character in a word look for it in the top level
-			for _, rune := range words[w] {
-				exists := false
-				//scan branches
-				for b := 0; b < len(node.Children); b++ {
-					thisChar := node.Children[b].Value
+		// 	//add to tries
+		// 	//for each character in a word look for it in the top level
+		// 	for _, rune := range words[w] {
+		// 		exists := false
+		// 		//scan branches
+		// 		for b := 0; b < len(node.Children); b++ {
+		// 			thisChar := node.Children[b].Value
 
-					//traverse
-					if thisChar == rune {
-						exists = true
-						node = node.Children[b]
-						break
-					}
-				}
+		// 			//traverse
+		// 			if thisChar == rune {
+		// 				exists = true
+		// 				node = node.Children[b]
+		// 				break
+		// 			}
+		// 		}
 
-				//add new node to children and move to it
-				if !exists {
-					//create node with character position for no particular reason
-					newNode := NewNode(rune, true)
-					node.Children = append(node.Children, newNode)
-					//traverse
-					node = newNode
-				}
-			} // end char
+		// 		//add new node to children and move to it
+		// 		if !exists {
+		// 			//create node with character position for no particular reason
+		// 			newNode := NewNode(rune, true)
+		// 			node.Children = append(node.Children, newNode)
+		// 			//traverse
+		// 			node = newNode
+		// 		}
+		// 	} // end char
 
-			// word end, complete but id should
-			// be array as there may be multiple articles with
-			// the same words 
-			node.Complete = true
-			node.ID = append(node.ID, pages[p].ID)
-		}
+		// 	// word end, complete but id should
+		// 	// be array as there may be multiple articles with
+		// 	// the same words
+		// 	node.Complete = true
+		// 	node.ID = append(node.ID, pages[p].ID)
+		// }
 	}
 
 	return &baseNode
@@ -142,11 +139,11 @@ func NewSearch(filePath string) *Node {
 
 // DoSearch scan through node trie and return all possibilities
 func (search *Node) DoSearch(term string) []Result {
+
 	result := make([]Result, 0)
+	idArr := make([]int, 0)
 
-	fmt.Println("Searching with " + term)
-
-	initial := Result{Name: "", ID: 0}
+	initial := Result{Name: "", ID: idArr}
 	result = append(result, initial)
 
 	//scan leaves
@@ -179,22 +176,16 @@ func (search *Node) DoSearch(term string) []Result {
 
 // getTree from end of term node find all branches
 func getTree(node *Node, str string) []Result {
-	result := make([]Result, 0)	
+	result := make([]Result, 0)
 
 	if node.Complete {
-		for _, id := range node.ID {
-			item := Result{Name: str, ID: id, Title:""}
-			if(node.Title) {
-				item.Title = str
-			}
-			
-			result = append(result, item)	
-		}
+		item := Result{Name: str, ID: node.ID}
+		result = append(result, item)
 	}
 
 	if len(node.Children) > 0 {
 		for _, child := range node.Children {
-			result = append(result, getTree(child, str + string(child.Value))...)
+			result = append(result, getTree(child, str+string(child.Value))...)
 		}
 	}
 
