@@ -43,6 +43,15 @@ func NewSearch() *Node {
 	return &node
 }
 
+func NewResultArray() []Result {
+	result := make([]Result, 0)
+	idArr := make([]int, 0)
+
+	initial := Result{Name: "", ID: idArr}
+	result = append(result, initial)
+	return result
+}
+
 func (search *Node) AddWord(word string, id int) {
 	//start at base node
 	node := search
@@ -89,8 +98,14 @@ func (search *Node) PopulateJSON(filePath string) {
 	for p := 0; p < len(pages); p++ {
 
 		//now add for each word of title type
-		words := strings.Fields(pages[p].Title)
-		for _, word := range words {
+		title := strings.Fields(pages[p].Title)
+		for _, word := range title {
+			search.AddWord(word, pages[p].ID)
+		}
+
+		//now add for each word of title type
+		content := strings.Fields(pages[p].Content)
+		for _, word := range content {
 			search.AddWord(word, pages[p].ID)
 		}
 	}
@@ -98,12 +113,7 @@ func (search *Node) PopulateJSON(filePath string) {
 
 // DoSearch scan through node trie and return all possibilities
 func (search *Node) DoSearch(term string) []Result {
-
-	result := make([]Result, 0)
-	idArr := make([]int, 0)
-
-	initial := Result{Name: "", ID: idArr}
-	result = append(result, initial)
+	result := NewResultArray()
 
 	//scan leaves
 	//move through tree until end of search term or not found
