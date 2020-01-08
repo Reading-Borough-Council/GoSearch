@@ -38,15 +38,50 @@ type Result struct {
 }
 
 // NewNode create a node w/ no childrena
-func NewNode(value rune) *Node {
-	node := Node{Value: value}
+func NewSearch() *Node {
+	node := Node{}
 	return &node
 }
 
-// NewSearch construct a search trie
-func NewSearch(filePath string) *Node {
-	baseNode := *NewNode('#')
+func (search *Node) AddWord(word string, id int) {
+	//start at base node
+	node := search
 
+	//add to tries
+	//for each character in a word look for it in the top level
+	for _, wordChar := range word {
+		exists := false
+		//scan branches
+		for b := 0; b < len(node.Children); b++ {
+			thisChar := node.Children[b].Value
+
+			//traverse
+			if thisChar == wordChar {
+				exists = true
+				node = node.Children[b]
+				break
+			}
+		}
+
+		//add new node to children and move to it
+		if !exists {
+			//create node with character position for no particular reason
+			newNode := &Node{Value: wordChar}
+			node.Children = append(node.Children, newNode)
+			//traverse
+			node = newNode
+		}
+	} // end char
+
+	// word end, complete but id should
+	// be array as there may be multiple articles with
+	// the same words
+	node.Complete = true
+	node.ID = append(node.ID, id)
+}
+
+// NewSearch construct a search trie
+func (search *Node) PopulateJSON(filePath string) {
 	//get data array from json
 	var pages = loadData(filePath)
 
@@ -55,86 +90,10 @@ func NewSearch(filePath string) *Node {
 
 		//now add for each word of title type
 		words := strings.Fields(pages[p].Title)
-		for w := 0; w < len(words); w++ {
-
-			//start at base node
-			node := &baseNode
-
-			//add to tries
-			//for each character in a word look for it in the top level
-			for _, rune := range words[w] {
-				exists := false
-				//scan branches
-				for b := 0; b < len(node.Children); b++ {
-					thisChar := node.Children[b].Value
-
-					//traverse
-					if thisChar == rune {
-						exists = true
-						node = node.Children[b]
-						break
-					}
-				}
-
-				//add new node to children and move to it
-				if !exists {
-					//create node with character position for no particular reason
-					newNode := NewNode(rune)
-					node.Children = append(node.Children, newNode)
-					//traverse
-					node = newNode
-				}
-			} // end char
-
-			// word end, complete but id should
-			// be array as there may be multiple articles with
-			// the same words
-			node.Complete = true
-			node.ID = append(node.ID, pages[p].ID)
+		for _, word := range words {
+			search.AddWord(word, pages[p].ID)
 		}
-
-		// //now add for each word of not title type (main body article)
-		// words = strings.Fields(pages[p].Content)
-		// for w := 0; w < len(words); w++ {
-
-		// 	//start at base node
-		// 	node := &baseNode
-
-		// 	//add to tries
-		// 	//for each character in a word look for it in the top level
-		// 	for _, rune := range words[w] {
-		// 		exists := false
-		// 		//scan branches
-		// 		for b := 0; b < len(node.Children); b++ {
-		// 			thisChar := node.Children[b].Value
-
-		// 			//traverse
-		// 			if thisChar == rune {
-		// 				exists = true
-		// 				node = node.Children[b]
-		// 				break
-		// 			}
-		// 		}
-
-		// 		//add new node to children and move to it
-		// 		if !exists {
-		// 			//create node with character position for no particular reason
-		// 			newNode := NewNode(rune, true)
-		// 			node.Children = append(node.Children, newNode)
-		// 			//traverse
-		// 			node = newNode
-		// 		}
-		// 	} // end char
-
-		// 	// word end, complete but id should
-		// 	// be array as there may be multiple articles with
-		// 	// the same words
-		// 	node.Complete = true
-		// 	node.ID = append(node.ID, pages[p].ID)
-		// }
 	}
-
-	return &baseNode
 }
 
 // DoSearch scan through node trie and return all possibilities
@@ -192,7 +151,7 @@ func getTree(node *Node, str string) []Result {
 	return result
 }
 
-// loadData, does what it says
+// loadData, does what it says, loads json file returns array of 'pages'
 func loadData(path string) []Page {
 	var pages []Page
 	jsonFile, err := os.Open(path)

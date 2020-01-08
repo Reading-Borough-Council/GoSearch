@@ -18,7 +18,10 @@ type App struct {
 
 func (a *App) Initialize() {
 	fmt.Println("Seed Planted")
-	search := NewSearch("data.json")
+
+	search := NewSearch()
+	search.PopulateJSON("data.json")
+
 	fmt.Println("Tree Grown")
 
 	a.Router = mux.NewRouter()
@@ -28,7 +31,7 @@ func (a *App) Initialize() {
 }
 
 func (a *App) Run(port int) {
-	log.Fatal(http.ListenAndServe(":" + strconv.Itoa(port), a.Router))
+	log.Fatal(http.ListenAndServe(":"+strconv.Itoa(port), a.Router))
 }
 
 func (a *App) initializeRoutes() {
@@ -56,7 +59,7 @@ func (a *App) getArticleTitle(id int) string {
 	for index := 0; index < len(a.Pages); index++ {
 		if id == a.Pages[index].ID {
 			return a.Pages[index].Title
-		}		
+		}
 	}
 	return ""
 }

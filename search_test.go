@@ -8,7 +8,8 @@ import (
 func TestSearch(t *testing.T) {
 
 	fmt.Println("Planting Seed")
-	search := NewSearch("testdata.json")
+	search := NewSearch())
+	search.PopulateJSON("testdata.json")
 	fmt.Println("Tree Grown")
 
 	text := "so"
