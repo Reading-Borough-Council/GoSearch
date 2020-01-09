@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"strconv"
 
+	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
 )
 
@@ -31,7 +32,8 @@ func (a *App) Initialize() {
 }
 
 func (a *App) Run(port int) {
-	log.Fatal(http.ListenAndServe(":"+strconv.Itoa(port), a.Router))
+	//log.Fatal(http.ListenAndServe(":"+strconv.Itoa(port), a.Router))
+	log.Fatal(http.ListenAndServe(":"+strconv.Itoa(port), handlers.CORS(handlers.AllowedHeaders([]string{"X-Requested-With", "Content-Type", "Authorization"}), handlers.AllowedMethods([]string{"GET", "OPTIONS"}), handlers.AllowedOrigins([]string{"*"}))(a.Router)))
 }
 
 func (a *App) initializeRoutes() {
@@ -41,6 +43,7 @@ func (a *App) initializeRoutes() {
 
 func (a *App) searchHandler(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
+	fmt.Println(vars["term"])
 	result := a.Search.DoSearch(vars["term"])
 
 	respondWithJSON(w, http.StatusOK, result)
