@@ -27,7 +27,6 @@ type Node struct {
 	Children []*Node
 	ID       []int
 	Value    rune
-	Complete bool
 }
 
 // Result with id for article
@@ -85,7 +84,6 @@ func (search *Node) AddWord(word string, id int) {
 	// word end, complete but id should
 	// be array as there may be multiple articles with
 	// the same words
-	node.Complete = true
 	node.ID = append(node.ID, id)
 }
 
@@ -147,7 +145,7 @@ func (search *Node) DoSearch(term string) []Result {
 func getTree(node *Node, str string) []Result {
 	result := make([]Result, 0)
 
-	if node.Complete {
+	if len(node.ID) > 0 {
 		item := Result{Name: str, ID: node.ID}
 		result = append(result, item)
 	}
