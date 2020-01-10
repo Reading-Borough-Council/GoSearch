@@ -11,8 +11,11 @@ import (
 	"fmt"
 	"io/ioutil"
 	"os"
+	"regexp"
 	"strconv"
 	"strings"
+
+	strip "github.com/grokify/html-strip-tags-go"
 )
 
 // Page Json struct
@@ -31,9 +34,10 @@ type Node struct {
 
 // Result with id for article
 type Result struct {
-	Title string
-	Name  string
-	ID    []int
+	Rendered string
+	Title    string
+	Name     string
+	ID       []int
 }
 
 // NewNode create a node w/ no childrena
@@ -102,10 +106,10 @@ func (search *Node) PopulateJSON(filePath string) {
 		}
 
 		//now add for each word of title type
-		content := strings.Fields(pages[p].Content)
-		for _, word := range content {
-			search.AddWord(word, pages[p].ID)
-		}
+		// content := strings.Fields(pages[p].Content)
+		// for _, word := range content {
+		// 	search.AddWord(word, pages[p].ID)
+		// }
 	}
 }
 
@@ -161,7 +165,7 @@ func getTree(node *Node, str string) []Result {
 
 // loadData, does what it says, loads json file returns array of 'pages'
 func loadData(path string) []Page {
-	var pages []Page
+	var dirtyPages []Page
 	jsonFile, err := os.Open(path)
 
 	if err != nil {
@@ -169,7 +173,26 @@ func loadData(path string) []Page {
 	}
 
 	byteValue, _ := ioutil.ReadAll(jsonFile)
-	json.Unmarshal(byteValue, &pages)
+	json.Unmarshal(byteValue, &dirtyPages)
+	var pages []Page
+
+	regex := regexp.MustCompile("\\&#\\d*;|\\.^.|\\,|\\/^.|\\?|\\;|\\)|\\(|\\:")
+
+	for _, page := range dirtyPages {
+		title := strip.StripTags(page.Title)
+		content := strip.StripTags(page.Content)
+
+		title = regex.ReplaceAllString(title, "")
+		content = regex.ReplaceAllString(content, "")
+
+		cleanPage := Page{
+			ID:      page.ID,
+			Content: content,
+			Title:   title}
+
+		pages = append(pages, cleanPage)
+	}
+
 	fmt.Println("Page count: " + strconv.Itoa(len(pages)))
 
 	defer jsonFile.Close()

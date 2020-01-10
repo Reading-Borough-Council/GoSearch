@@ -17,6 +17,10 @@ type App struct {
 	Pages  []Page
 }
 
+type SearchResult struct {
+	Rendered string
+}
+
 func (a *App) Initialize() {
 	fmt.Println("Seed Planted")
 
@@ -27,12 +31,14 @@ func (a *App) Initialize() {
 
 	a.Router = mux.NewRouter()
 	a.Search = search
-	//a.Pages = loadData("data.json")
+	a.Pages = loadData("data.json")
 	a.initializeRoutes()
 }
 
 func (a *App) Run(port int) {
 	//log.Fatal(http.ListenAndServe(":"+strconv.Itoa(port), a.Router))
+
+	//Allow CORS
 	log.Fatal(http.ListenAndServe(":"+strconv.Itoa(port), handlers.CORS(handlers.AllowedHeaders([]string{"X-Requested-With", "Content-Type", "Authorization"}), handlers.AllowedMethods([]string{"GET", "OPTIONS"}), handlers.AllowedOrigins([]string{"*"}))(a.Router)))
 }
 
@@ -43,10 +49,19 @@ func (a *App) initializeRoutes() {
 
 func (a *App) searchHandler(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
-	fmt.Println(vars["term"])
-	result := a.Search.DoSearch(vars["term"])
+	rawResults := a.Search.DoSearch(vars["term"])
 
-	respondWithJSON(w, http.StatusOK, result)
+	searchResults := make([]SearchResult, 0)
+
+	for _, r := range rawResults {
+		for _, id := range r.ID {
+			title := a.getArticleTitle(id)
+			searchResult := SearchResult{Rendered: title}
+			searchResults = append(searchResults, searchResult)
+		}
+	}
+
+	respondWithJSON(w, http.StatusOK, searchResults)
 }
 
 func (a *App) ping(w http.ResponseWriter, r *http.Request) {
