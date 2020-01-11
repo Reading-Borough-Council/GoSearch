@@ -6,6 +6,7 @@ import (
 	"log"
 	"net/http"
 	"strconv"
+	"strings"
 
 	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
@@ -49,7 +50,7 @@ func (a *App) initializeRoutes() {
 
 func (a *App) searchHandler(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
-	rawResults := a.Search.DoSearch(vars["term"])
+	rawResults := a.Search.DoSearch(strings.ToLower(vars["term"]))
 
 	searchResults := make([]SearchResult, 0)
 

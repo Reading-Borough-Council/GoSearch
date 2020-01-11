@@ -14,6 +14,7 @@ import (
 	"regexp"
 	"strconv"
 	"strings"
+	"unicode"
 
 	strip "github.com/grokify/html-strip-tags-go"
 )
@@ -102,7 +103,7 @@ func (search *Node) PopulateJSON(filePath string) {
 		//now add for each word of title type
 		title := strings.Fields(pages[p].Title)
 		for _, word := range title {
-			search.AddWord(word, pages[p].ID)
+			search.AddWord(strings.ToLower(word), pages[p].ID)
 		}
 
 		//now add for each word of title type
@@ -128,9 +129,9 @@ func (search *Node) DoSearch(term string) []Result {
 			thisChar := search.Children[index].Value
 
 			//move along
-			if thisChar == rune(char) {
+			if thisChar == rune(unicode.ToLower(char)) {
 				search = search.Children[index]
-				result[0].Name = result[0].Name + string(thisChar)
+				result[0].Name = result[0].Name + string(unicode.ToLower(thisChar))
 				found = true
 				break
 			}
@@ -176,6 +177,7 @@ func loadData(path string) []Page {
 	json.Unmarshal(byteValue, &dirtyPages)
 	var pages []Page
 
+	// get rid of trailing commas, full stops and colour codes
 	regex := regexp.MustCompile("\\&#\\d*;|\\.^.|\\,|\\/^.|\\?|\\;|\\)|\\(|\\:")
 
 	for _, page := range dirtyPages {
