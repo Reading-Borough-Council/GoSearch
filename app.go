@@ -19,6 +19,7 @@ type App struct {
 }
 
 type SearchResult struct {
+	ID       int
 	Rendered string
 }
 
@@ -57,7 +58,7 @@ func (a *App) searchHandler(w http.ResponseWriter, r *http.Request) {
 	for _, r := range rawResults {
 		for _, id := range r.ID {
 			title := a.getArticleTitle(id)
-			searchResult := SearchResult{Rendered: title}
+			searchResult := SearchResult{ID: id, Rendered: title}
 			searchResults = append(searchResults, searchResult)
 		}
 	}
