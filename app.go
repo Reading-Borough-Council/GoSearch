@@ -23,23 +23,19 @@ type SearchResult struct {
 	Rendered string
 }
 
-func (a *App) Initialize() {
+func (a *App) Initialize(fileName string) {
 	fmt.Println("Seed Planted")
-
 	search := NewSearch()
 	search.PopulateJSON("data.json")
-
 	fmt.Println("Tree Grown")
 
 	a.Router = mux.NewRouter()
 	a.Search = search
-	a.Pages = loadData("data.json")
+	a.Pages = loadData(fileName)
 	a.initializeRoutes()
 }
 
 func (a *App) Run(port int) {
-	//log.Fatal(http.ListenAndServe(":"+strconv.Itoa(port), a.Router))
-
 	//Allow CORS
 	log.Fatal(http.ListenAndServe(":"+strconv.Itoa(port), handlers.CORS(handlers.AllowedHeaders([]string{"X-Requested-With", "Content-Type", "Authorization"}), handlers.AllowedMethods([]string{"GET", "OPTIONS"}), handlers.AllowedOrigins([]string{"*"}))(a.Router)))
 }
