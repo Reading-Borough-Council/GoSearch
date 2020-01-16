@@ -17,6 +17,9 @@ Cause I made it so it's great and open-source.
 ## Rubbish answer, what makes it worthwhile?
 GoSearch can handle millions of requests with relatively low resources and very low latency.
 
+## But why?
+This is faster and better than everything.
+
 ## Run
 go run main.go search.go app.go
 or build and run ./search.exe
