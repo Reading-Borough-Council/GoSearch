@@ -13,17 +13,19 @@ import (
 )
 
 type App struct {
-	Router *mux.Router
-	Search *Node
-	Pages  []Page
+	Router  *mux.Router
+	Search  *Node
+	Pages   []Page
+	SiteMap []Site
 }
 
 type SearchResult struct {
 	ID       int
 	Rendered string
+	URL      string
 }
 
-func (a *App) Initialize(fileName string) {
+func (a *App) Initialize(dataFile, siteMapFile string) {
 	fmt.Println("Seed Planted")
 	search := NewSearch()
 	search.PopulateJSON("data.json")
@@ -31,7 +33,8 @@ func (a *App) Initialize(fileName string) {
 
 	a.Router = mux.NewRouter()
 	a.Search = search
-	a.Pages = loadData(fileName)
+	a.Pages = loadData(dataFile)
+	a.SiteMap = loadSiteMap(siteMapFile)
 	a.initializeRoutes()
 }
 
@@ -54,7 +57,8 @@ func (a *App) searchHandler(w http.ResponseWriter, r *http.Request) {
 	for _, r := range rawResults {
 		for _, id := range r.ID {
 			title := a.getArticleTitle(id)
-			searchResult := SearchResult{ID: id, Rendered: title}
+			url := a.getArticleURL(id)
+			searchResult := SearchResult{ID: id, Rendered: title, URL: url}
 			searchResults = append(searchResults, searchResult)
 		}
 	}
@@ -70,6 +74,15 @@ func (a *App) getArticleTitle(id int) string {
 	for index := 0; index < len(a.Pages); index++ {
 		if id == a.Pages[index].ID {
 			return a.Pages[index].Title
+		}
+	}
+	return ""
+}
+
+func (a *App) getArticleURL(id int) string {
+	for index := 0; index < len(a.SiteMap); index++ {
+		if id == a.SiteMap[index].ID {
+			return a.SiteMap[index].URL
 		}
 	}
 	return ""

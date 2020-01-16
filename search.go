@@ -26,6 +26,11 @@ type Page struct {
 	Content string `json:"content"`
 }
 
+type Site struct {
+	ID  int    `json:ID`
+	URL string `json:url`
+}
+
 // Node a node
 type Node struct {
 	Children []*Node
@@ -199,4 +204,21 @@ func loadData(path string) []Page {
 
 	defer jsonFile.Close()
 	return pages
+}
+
+func loadSiteMap(path string) []Site {
+	var siteMap []Site
+	jsonFile, err := os.Open(path)
+
+	if err != nil {
+		fmt.Println("Can't read file")
+	}
+
+	byteValue, _ := ioutil.ReadAll(jsonFile)
+	json.Unmarshal(byteValue, &siteMap)
+
+	fmt.Println("Page count: " + strconv.Itoa(len(siteMap)))
+
+	defer jsonFile.Close()
+	return siteMap
 }
