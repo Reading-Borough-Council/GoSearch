@@ -26,3 +26,6 @@ or build and run ./search.exe
 
 ## Build
 go build -o search.exe ./main.go ./app.go ./search.go
+
+## Progress
+- 2020/01/16 Crawl sites, 
