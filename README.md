@@ -12,9 +12,6 @@ Then returns url for result and highlights search text of article.
 2020/01/16 Load data from JSON into memory keys(id, title, content)
 
 ## There are already searches why do I want to use this?
-Cause I made it so it's great and open-source.
-
-## Rubbish answer, what makes it worthwhile?
 GoSearch can handle millions of requests with relatively low resources and very low latency.
 
 ## But why?
