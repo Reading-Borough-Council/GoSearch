@@ -165,6 +165,8 @@ func (search *search) DoSearch(query string, count int) []result {
 				output = append(output, result)
 			}
 		}
+	} else {
+		output = temp
 	}
 
 	//Now we have an array of all the first word results
