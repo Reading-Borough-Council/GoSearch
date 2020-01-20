@@ -139,7 +139,7 @@ func (search *search) DoSearch(query string, count int) []result {
 			articleID := result.Location[0].ID
 			articlePos := result.Location[0].Position
 
-			text := strings.Split(search.getArticleTitle(articleID), " ")
+			text := strings.Split(strings.ToLower(search.getArticleTitle(articleID)), " ")
 			valid := true
 
 			//now check each following word
