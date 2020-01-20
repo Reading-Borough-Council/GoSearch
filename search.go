@@ -12,6 +12,7 @@ import (
 	"io/ioutil"
 	"os"
 	"regexp"
+	"sort"
 	"strconv"
 	"strings"
 	"unicode"
@@ -19,51 +20,230 @@ import (
 	strip "github.com/grokify/html-strip-tags-go"
 )
 
+type search struct {
+	Root    *node
+	Pages   []page
+	SiteMap []site
+}
+
+// node a node
+type node struct {
+	Children []*node
+	Location []location
+	Value    rune
+}
+
+// Location of word in site(ID) and body(Position)
+type location struct {
+	ID       int
+	Position int
+}
+
+// Result with id for article
+type result struct {
+	Rendered string
+	Title    string
+	Name     string
+	Location []location
+}
+
 // Page Json struct
-type Page struct {
+type page struct {
 	ID      int    `json:"id"`
 	Title   string `json:"title"`
 	Content string `json:"content"`
 }
 
-type Site struct {
+// Site
+type site struct {
 	ID  int    `json:ID`
 	URL string `json:url`
 }
 
-// Node a node
-type Node struct {
-	Children []*Node
-	ID       []int
-	Value    rune
+// NewSearch create a node w/ no children
+func NewSearch() *search {
+	node := node{}
+	search := search{Root: &node}
+	return &search
 }
 
-// Result with id for article
-type Result struct {
-	Rendered string
-	Title    string
-	Name     string
-	ID       []int
-}
+// NewResultArray
+func NewResultArray() []result {
+	locArr := make([]location, 0)
+	initial := result{Name: "", Location: locArr}
 
-// NewNode create a node w/ no childrena
-func NewSearch() *Node {
-	node := Node{}
-	return &node
-}
-
-func NewResultArray() []Result {
-	result := make([]Result, 0)
-	idArr := make([]int, 0)
-
-	initial := Result{Name: "", ID: idArr}
-	result = append(result, initial)
+	r := make([]result, 0)
+	result := append(r, initial)
 	return result
 }
 
-func (search *Node) AddWord(word string, id int) {
+func NewNode(char rune) *node {
+	return &node{Value: char}
+}
+
+func NewResult(r, t, n string, loc []location) *result {
+	return &result{
+		Rendered: r,
+		Title:    t,
+		Name:     n,
+		Location: loc}
+}
+
+func NewPage(id int, title, content string) *page {
+	return &page{
+		ID:      id,
+		Title:   title,
+		Content: content}
+}
+
+// DoSearch split up input and run search
+// Get results for each individual term
+// Return concurrent terms
+func (search *search) DoSearch(query string, count int) []result {
+	results := NewResultArray()
+	terms := strings.Split(query, " ")
+
+	temp := make([]result, 0)
+
+	//get results for first term
+	termResults := search.WordSearch(terms[0])
+
+	//for word/partial results i.e (app) => {application,applicator,appropo,...}
+	for _, termResult := range termResults {
+		results = append(results, termResult)
+
+		for _, loc := range termResult.Location {
+
+			location := make([]location, 1)
+			location[0] = loc
+
+			newResult := NewResult(termResult.Rendered,
+				termResult.Title,
+				termResult.Name,
+				location)
+
+			temp = append(temp, *newResult)
+		}
+
+	}
+
+	//now keep matching following terms
+	followerCount := len(terms) - 1
+	output := make([]result, 0)
+
+	if followerCount > 0 {
+		followers := terms[1:]
+
+		for _, result := range temp {
+
+			articleID := result.Location[0].ID
+			articlePos := result.Location[0].Position
+
+			text := strings.Split(search.getArticleTitle(articleID), " ")
+			valid := true
+
+			//now check each following word
+			for offset, term := range followers {
+				txtIndex := articlePos + offset + 1
+
+				if txtIndex < len(text) {
+					match := text[txtIndex]
+
+					if !strings.HasPrefix(match, term) {
+						valid = false
+						break
+					} else {
+						result.Rendered = result.Rendered + " " + term
+					}
+				} else {
+					valid = false
+					break
+				}
+			}
+
+			if valid {
+				output = append(output, result)
+			}
+		}
+	}
+
+	//Now we have an array of all the first word results
+
+	//Order results by relevance and strength
+	//Limit to count results
+	//Following words score higher
+	//If first term is beginning of sentence then prefer
+	//Group results by ID
+	//Order results in each group
+	//Look for concurrent positions
+
+	return output
+}
+
+// WordSearch scan through node trie and return all possibilities
+func (search *search) WordSearch(term string) []result {
+	result := NewResultArray()
+	found := false
+	node := search.Root
+
+	//scan leaves
+	//move through tree until end of search term or not found
+	for _, char := range term {
+
+		//look for matching node
+		found = false
+
+		for _, child := range node.Children {
+			thisChar := child.Value
+
+			//move along
+			if thisChar == rune(unicode.ToLower(char)) {
+				found = true
+				node = child
+				result[0].Name = result[0].Name + string(unicode.ToLower(thisChar))
+			}
+		}
+
+		if !found {
+			fmt.Println("Not Found")
+			return result
+		}
+	}
+
+	if found {
+		//return results with node from end of term and prefix
+		return getTree(node, result[0].Name)
+	}
+
+	return result
+}
+
+// getTree from end of term node find all branches
+func getTree(node *node, str string) []result {
+	result := make([]result, 0)
+
+	if len(node.Location) > 0 {
+		item := *NewResult(str, "", "", node.Location)
+		result = append(result, item)
+	}
+
+	if len(node.Children) > 0 {
+		for _, child := range node.Children {
+			result = append(result, getTree(child, str+string(child.Value))...)
+		}
+	}
+
+	return result
+}
+
+// func (search *search) FindNode(node *node, char rune) *node {
+
+// }
+
+// AddWord to Trie
+func (search *search) AddWord(word string, location location) {
 	//start at base node
-	node := search
+	node := search.Root
 
 	//add to tries
 	//for each character in a word look for it in the top level
@@ -84,7 +264,7 @@ func (search *Node) AddWord(word string, id int) {
 		//add new node to children and move to it
 		if !exists {
 			//create node with character position for no particular reason
-			newNode := &Node{Value: wordChar}
+			newNode := NewNode(wordChar)
 			node.Children = append(node.Children, newNode)
 			//traverse
 			node = newNode
@@ -94,21 +274,23 @@ func (search *Node) AddWord(word string, id int) {
 	// word end, complete but id should
 	// be array as there may be multiple articles with
 	// the same words
-	node.ID = append(node.ID, id)
+	node.Location = append(node.Location, location)
 }
 
-// NewSearch construct a search trie
-func (search *Node) PopulateJSON(filePath string) {
-	//get data array from json
-	var pages = loadData(filePath)
+// PopulateJSON Read JSON and add individual words
+func (search *search) PopulateJSON(dataFilePath, siteMapPath string) {
+
+	search.Pages = loadData(dataFilePath)
+	search.SiteMap = loadSiteMap(siteMapPath)
 
 	//now for each page
-	for p := 0; p < len(pages); p++ {
+	for p := 0; p < len(search.Pages); p++ {
 
 		//now add for each word of title type
-		title := strings.Fields(pages[p].Title)
-		for _, word := range title {
-			search.AddWord(strings.ToLower(word), pages[p].ID)
+		title := strings.Fields(search.Pages[p].Title)
+		for index, word := range title {
+			location := location{ID: search.Pages[p].ID, Position: index}
+			search.AddWord(strings.ToLower(word), location)
 		}
 
 		//now add for each word of title type
@@ -119,59 +301,9 @@ func (search *Node) PopulateJSON(filePath string) {
 	}
 }
 
-// DoSearch scan through node trie and return all possibilities
-func (search *Node) DoSearch(term string) []Result {
-	result := NewResultArray()
-
-	//scan leaves
-	//move through tree until end of search term or not found
-	for _, char := range term {
-		found := false
-
-		//look for matching node
-		for index := 0; index < len(search.Children); index++ {
-
-			thisChar := search.Children[index].Value
-
-			//move along
-			if thisChar == rune(unicode.ToLower(char)) {
-				search = search.Children[index]
-				result[0].Name = result[0].Name + string(unicode.ToLower(thisChar))
-				found = true
-				break
-			}
-		}
-
-		if !found {
-			return result
-		}
-	}
-
-	//return results with node from end of term and prefix
-	return getTree(search, result[0].Name)
-}
-
-// getTree from end of term node find all branches
-func getTree(node *Node, str string) []Result {
-	result := make([]Result, 0)
-
-	if len(node.ID) > 0 {
-		item := Result{Name: str, ID: node.ID}
-		result = append(result, item)
-	}
-
-	if len(node.Children) > 0 {
-		for _, child := range node.Children {
-			result = append(result, getTree(child, str+string(child.Value))...)
-		}
-	}
-
-	return result
-}
-
 // loadData, does what it says, loads json file returns array of 'pages'
-func loadData(path string) []Page {
-	var dirtyPages []Page
+func loadData(path string) []page {
+	var dirtyPages []page
 	jsonFile, err := os.Open(path)
 
 	if err != nil {
@@ -180,7 +312,7 @@ func loadData(path string) []Page {
 
 	byteValue, _ := ioutil.ReadAll(jsonFile)
 	json.Unmarshal(byteValue, &dirtyPages)
-	var pages []Page
+	var pages []page
 
 	// get rid of trailing commas, full stops and colour codes
 	regex := regexp.MustCompile("\\&#\\d*;|\\.^.|\\,|\\/^.|\\?|\\;|\\)|\\(|\\:")
@@ -192,22 +324,24 @@ func loadData(path string) []Page {
 		title = regex.ReplaceAllString(title, "")
 		content = regex.ReplaceAllString(content, "")
 
-		cleanPage := Page{
-			ID:      page.ID,
-			Content: content,
-			Title:   title}
+		cleanPage := *NewPage(page.ID, title, content)
 
 		pages = append(pages, cleanPage)
 	}
 
-	fmt.Println("Page count: " + strconv.Itoa(len(pages)))
+	fmt.Println("Page count: " + strconv.Itoa(len(pages)) + " (pages)")
 
 	defer jsonFile.Close()
+
+	//sort from low id to high
+	sort.Slice(pages, func(i, j int) bool {
+		return pages[i].ID < pages[j].ID
+	})
 	return pages
 }
 
-func loadSiteMap(path string) []Site {
-	var siteMap []Site
+func loadSiteMap(path string) []site {
+	var siteMap []site
 	jsonFile, err := os.Open(path)
 
 	if err != nil {
@@ -217,8 +351,55 @@ func loadSiteMap(path string) []Site {
 	byteValue, _ := ioutil.ReadAll(jsonFile)
 	json.Unmarshal(byteValue, &siteMap)
 
-	fmt.Println("Page count: " + strconv.Itoa(len(siteMap)))
+	fmt.Println("Page count: " + strconv.Itoa(len(siteMap)) + " (sitemap)")
 
 	defer jsonFile.Close()
+
+	//sort from low id to high
+	sort.Slice(siteMap, func(i, j int) bool {
+		return siteMap[i].ID < siteMap[j].ID
+	})
 	return siteMap
+}
+
+func (search *search) getArticleTitle(id int) string {
+	//set index to reasonable value
+	var max uint32 = uint32(len(search.Pages) - 1)
+	var low uint32 = uint32(0)
+	var index uint32 = max
+
+	for search.Pages[index].ID != id {
+		//fmt.Printf("Search for %d @ index %d: %d (low: %d, max: %d) \n", id, index, search.Pages[index].ID, low, max)
+
+		if search.Pages[index].ID > id {
+			max = index
+			index = ((max + low) >> 1)
+		} else {
+			low = index
+			index = ((max + low) >> 1)
+		}
+	}
+
+	return search.Pages[index].Title
+}
+
+func (search *search) getArticleURL(id int) string {
+	//set index to reasonable value
+	var max uint32 = uint32(len(search.SiteMap) - 1)
+	var low uint32 = uint32(0)
+	var index uint32 = max
+
+	for search.SiteMap[index].ID != id {
+		//fmt.Printf("Search for %d @ index %d: %d (low: %d, max: %d) \n", id, index, search.Pages[index].ID, low, max)
+
+		if search.SiteMap[index].ID > id {
+			max = index
+			index = ((max + low) >> 1)
+		} else {
+			low = index
+			index = ((max + low) >> 1)
+		}
+	}
+
+	return search.SiteMap[index].URL
 }

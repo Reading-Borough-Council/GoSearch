@@ -2,7 +2,6 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
 	"log"
 	"net/http"
 	"strconv"
@@ -12,11 +11,11 @@ import (
 	"github.com/gorilla/mux"
 )
 
+const RESULTLIMIT = 16
+
 type App struct {
-	Router  *mux.Router
-	Search  *Node
-	Pages   []Page
-	SiteMap []Site
+	Router *mux.Router
+	Search *search
 }
 
 type SearchResult struct {
@@ -26,39 +25,41 @@ type SearchResult struct {
 }
 
 func (a *App) Initialize(dataFile, siteMapFile string) {
-	fmt.Println("Seed Planted")
-	search := NewSearch()
-	search.PopulateJSON("data.json")
-	fmt.Println("Tree Grown")
-
+	a.Search = NewSearch()
 	a.Router = mux.NewRouter()
-	a.Search = search
-	a.Pages = loadData(dataFile)
-	a.SiteMap = loadSiteMap(siteMapFile)
+
+	a.Search.PopulateJSON(dataFile, siteMapFile)
+
 	a.initializeRoutes()
 }
 
 func (a *App) Run(port int) {
 	//Allow CORS
-	log.Fatal(http.ListenAndServe(":"+strconv.Itoa(port), handlers.CORS(handlers.AllowedHeaders([]string{"X-Requested-With", "Content-Type", "Authorization"}), handlers.AllowedMethods([]string{"GET", "OPTIONS"}), handlers.AllowedOrigins([]string{"*"}))(a.Router)))
+	log.Fatal(http.ListenAndServe(":"+strconv.Itoa(port),
+		handlers.CORS(handlers.AllowedHeaders(
+			[]string{"X-Requested-With", "Content-Type", "Authorization"}),
+			handlers.AllowedMethods([]string{"GET", "OPTIONS"}),
+			handlers.AllowedOrigins([]string{"*"}))(a.Router)))
 }
 
 func (a *App) initializeRoutes() {
-	a.Router.HandleFunc("/v1/search/{term}", a.searchHandler).Methods("GET")
+	a.Router.HandleFunc("/v1/search/{query}", a.searchHandler).Methods("GET")
 	a.Router.HandleFunc("/v1/ping", a.ping).Methods("GET")
 }
 
 func (a *App) searchHandler(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
-	rawResults := a.Search.DoSearch(strings.ToLower(vars["term"]))
-
+	rawResults := a.Search.DoSearch(strings.ToLower(vars["query"]), RESULTLIMIT)
 	searchResults := make([]SearchResult, 0)
 
-	for _, r := range rawResults {
-		for _, id := range r.ID {
-			title := a.getArticleTitle(id)
-			url := a.getArticleURL(id)
-			searchResult := SearchResult{ID: id, Rendered: title, URL: url}
+	//array of possible words with ids
+	//[{apple: [12, 43, 62]}, {application: [1, 43, 52]}]
+
+	for _, r := range rawResults { //for each word
+		for _, loc := range r.Location { //for each id
+			title := a.Search.getArticleTitle(loc.ID)
+			url := a.Search.getArticleURL(loc.ID)
+			searchResult := SearchResult{ID: loc.ID, Rendered: title, URL: url}
 			searchResults = append(searchResults, searchResult)
 		}
 	}
@@ -68,24 +69,6 @@ func (a *App) searchHandler(w http.ResponseWriter, r *http.Request) {
 
 func (a *App) ping(w http.ResponseWriter, r *http.Request) {
 	respondWithJSON(w, http.StatusOK, "What!")
-}
-
-func (a *App) getArticleTitle(id int) string {
-	for index := 0; index < len(a.Pages); index++ {
-		if id == a.Pages[index].ID {
-			return a.Pages[index].Title
-		}
-	}
-	return ""
-}
-
-func (a *App) getArticleURL(id int) string {
-	for index := 0; index < len(a.SiteMap); index++ {
-		if id == a.SiteMap[index].ID {
-			return a.SiteMap[index].URL
-		}
-	}
-	return ""
 }
 
 func respondWithError(w http.ResponseWriter, code int, message string) {
