@@ -169,15 +169,50 @@ func (search *search) DoSearch(query string, count int) []result {
 		output = temp
 	}
 
-	//Now we have an array of all the first word results
+	if len(output) > 10 {
+		output = output[0:10]
+	}
 
-	//Order results by relevance and strength
-	//Limit to count results
-	//Following words score higher
+	//sort by match score
+	shuffles := 1
+	tst := make([]int, 10)
+
+	for i, _ := range output {
+		for _, term := range terms {
+			if strings.HasPrefix(output[i].Rendered, term) {
+				tst[i]++
+			}
+		}
+		tst[i] = tst[i] / len(output[i].Rendered)
+	}
+
+	for shuffles > 0 {
+		shuffles = 0
+		for index := 1; index < (len(output) - 1); index++ {
+
+			if tst[index-1] < tst[index] {
+				shuffles++
+				t := output[index-1]
+				output[index-1] = output[index]
+				output[index] = t
+			}
+		}
+	}
+
+	//Now we have an array of all the results with concurrent terms
+	//i.e hello world
+	//if no results then return single word results by score
+	//i.e if article contains hello and world
+	//if still no results then return for single word results
+
+	//Order results by match score i.e
+	//Search: council tax
+	//return:
+	//1) council tax (2/2)
+	//2) what is council tax (2/4)
+	//3) i like chocolate and paying council tax (2/7)
+
 	//If first term is beginning of sentence then prefer
-	//Group results by ID
-	//Order results in each group
-	//Look for concurrent positions
 
 	return output
 }
@@ -207,7 +242,7 @@ func (search *search) WordSearch(term string) []result {
 		}
 
 		if !found {
-			fmt.Println("Not Found")
+			//fmt.Println("Not Found")
 			return result
 		}
 	}
