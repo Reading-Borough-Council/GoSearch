@@ -14,7 +14,7 @@ func TestSearch(t *testing.T) {
 
 	text := "so"
 
-	result := search.DoSearch(text)
+	result := search.DoSimpleConcurrentSearch(text)
 
 	expected := [4]string{"society", "social", "some", "so"}
 

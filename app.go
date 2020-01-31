@@ -29,6 +29,7 @@ func (a *App) Initialize(dataFile, siteMapFile string) {
 	a.Router = mux.NewRouter()
 
 	a.Search.PopulateJSON(dataFile, siteMapFile)
+	a.Search.PopulateJSONStemmed(dataFile, siteMapFile)
 
 	a.initializeRoutes()
 }
@@ -49,7 +50,7 @@ func (a *App) initializeRoutes() {
 
 func (a *App) searchHandler(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
-	rawResults := a.Search.DoSearch(strings.ToLower(vars["query"]), RESULTLIMIT)
+	rawResults := a.Search.DoStemmedConcurrentSearch(strings.ToLower(vars["query"]), RESULTLIMIT)
 	searchResults := make([]SearchResult, 0)
 
 	//array of possible words with ids

@@ -18,6 +18,7 @@ import (
 	"unicode"
 
 	strip "github.com/grokify/html-strip-tags-go"
+	"github.com/rookii/paicehusk"
 )
 
 type search struct {
@@ -96,10 +97,14 @@ func NewPage(id int, title, content string) *page {
 		Content: content}
 }
 
-// DoSearch split up input and run search
+// func (search *Search) DoComplexSearch(query string, count int) []result {
+// 	search.D
+// }
+
+// DoSimpleConcurrentSearch split up input and run search
 // Get results for each individual term
 // Return concurrent terms
-func (search *search) DoSearch(query string, count int) []result {
+func (search *search) DoSimpleConcurrentSearch(query string, count int) []result {
 	results := NewResultArray()
 	terms := strings.Split(query, " ")
 
@@ -169,34 +174,100 @@ func (search *search) DoSearch(query string, count int) []result {
 		output = temp
 	}
 
-	if len(output) > 10 {
-		output = output[0:10]
+	//Now we have an array of all the results with concurrent terms
+	//i.e hello world
+	//if no results then return single word results by score
+	//i.e if article contains hello and world
+	//if still no results then return for single word results
+
+	//Order results by match score i.e
+	//Search: council tax
+	//return:
+	//1) council tax (2/2)
+	//2) what is council tax (2/4)
+	//3) i like chocolate and paying council tax (2/7)
+
+	//If first term is beginning of sentence then prefer
+
+	return output
+}
+
+// DoSimpleConcurrentSearch split up input and run search
+// Get results for each individual term
+// Return concurrent terms
+func (search *search) DoStemmedConcurrentSearch(query string, count int) []result {
+	results := NewResultArray()
+	terms := strings.Split(query, " ")
+
+	for i, t := range terms {
+		terms[i] = paicehusk.DefaultRules.Stem(t)
 	}
 
-	//sort by match score
-	shuffles := 1
-	tst := make([]int, 10)
+	temp := make([]result, 0)
 
-	for i, _ := range output {
-		for _, term := range terms {
-			if strings.HasPrefix(output[i].Rendered, term) {
-				tst[i]++
-			}
+	//get results for first term
+	termResults := search.WordSearch(terms[0])
+
+	//now keep matching following terms
+	followerCount := len(terms) - 1
+
+	//for word/partial results i.e (app) => {application,applicator,appropo,...}
+	for _, termResult := range termResults {
+		results = append(results, termResult)
+
+		for _, loc := range termResult.Location {
+
+			location := make([]location, 1)
+			location[0] = loc
+
+			newResult := NewResult(termResult.Rendered,
+				termResult.Title,
+				termResult.Name,
+				location)
+
+			temp = append(temp, *newResult)
 		}
-		tst[i] = tst[i] / len(output[i].Rendered)
+
 	}
 
-	for shuffles > 0 {
-		shuffles = 0
-		for index := 1; index < (len(output) - 1); index++ {
+	output := make([]result, 0)
 
-			if tst[index-1] < tst[index] {
-				shuffles++
-				t := output[index-1]
-				output[index-1] = output[index]
-				output[index] = t
+	if followerCount > 0 {
+		followers := terms[1:]
+
+		for _, result := range temp {
+
+			articleID := result.Location[0].ID
+			articlePos := result.Location[0].Position
+
+			text := strings.Split(strings.ToLower(search.getArticleTitle(articleID)), " ")
+			valid := true
+
+			//now check each following word
+			for offset, term := range followers {
+				txtIndex := articlePos + offset + 1
+
+				if txtIndex < len(text) {
+					match := text[txtIndex]
+
+					if !strings.HasPrefix(match, term) {
+						valid = false
+						break
+					} else {
+						result.Rendered = result.Rendered + " " + term
+					}
+				} else {
+					valid = false
+					break
+				}
+			}
+
+			if valid {
+				output = append(output, result)
 			}
 		}
+	} else {
+		output = temp
 	}
 
 	//Now we have an array of all the results with concurrent terms
@@ -328,6 +399,34 @@ func (search *search) PopulateJSON(dataFilePath, siteMapPath string) {
 		for index, word := range title {
 			location := location{ID: search.Pages[p].ID, Position: index}
 			search.AddWord(strings.ToLower(word), location)
+		}
+
+		//now add for each word of title type
+		// content := strings.Fields(pages[p].Content)
+		// for _, word := range content {
+		// 	search.AddWord(word, pages[p].ID)
+		// }
+	}
+}
+
+// PopulateJSON Read JSON and add individual words stemmed
+func (search *search) PopulateJSONStemmed(dataFilePath, siteMapPath string) {
+	search.Pages = loadData(dataFilePath)
+	search.SiteMap = loadSiteMap(siteMapPath)
+
+	//now for each page
+	for p := 0; p < len(search.Pages); p++ {
+
+		//now add for each word of title type
+		title := strings.Fields(search.Pages[p].Title)
+
+		for index, word := range title {
+			//now stem title
+			wordStem := paicehusk.DefaultRules.Stem(word)
+
+			location := location{ID: search.Pages[p].ID, Position: index}
+
+			search.AddWord(strings.ToLower(wordStem), location)
 		}
 
 		//now add for each word of title type
