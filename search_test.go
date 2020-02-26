@@ -7,16 +7,15 @@ import (
 
 func TestSearch(t *testing.T) {
 
-	fmt.Println("Planting Seed")
 	search := NewSearch()
-	search.PopulateJSON("testdata.json")
-	fmt.Println("Tree Grown")
+	search.PopulateJSON("testdata.json", "testsitemap.json")
 
 	text := "so"
 
-	result := search.DoSimpleConcurrentSearch(text)
+	result := search.DoSimpleConcurrentSearch(text, 1)
+	fmt.Println(result)
 
-	expected := [4]string{"society", "social", "some", "so"}
+	expected := [1]string{"society"}
 
 	fmt.Println("Run Tests w/ search: " + text)
 	for _, str := range expected {

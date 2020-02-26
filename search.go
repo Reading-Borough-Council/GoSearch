@@ -129,7 +129,6 @@ func (search *search) DoSimpleConcurrentSearch(query string, count int) []result
 
 			temp = append(temp, *newResult)
 		}
-
 	}
 
 	//now keep matching following terms
@@ -192,7 +191,15 @@ func (search *search) DoSimpleConcurrentSearch(query string, count int) []result
 	return output
 }
 
-// DoSimpleConcurrentSearch split up input and run search
+// DoStemmedConcurrentSearch split up input and run search
+// 1.
+// Run Search on first stemmed term returns []result
+// look for concurrent terms by location
+// 2.
+// Run search on all stemmed terms
+// Look for concurrency
+// 3.
+// Run search on all
 // Get results for each individual term
 // Return concurrent terms
 func (search *search) DoStemmedConcurrentSearch(query string, count int) []result {
@@ -248,7 +255,8 @@ func (search *search) DoStemmedConcurrentSearch(query string, count int) []resul
 				txtIndex := articlePos + offset + 1
 
 				if txtIndex < len(text) {
-					match := text[txtIndex]
+					// match := text[txtIndex]
+					match := paicehusk.DefaultRules.Stem(text[txtIndex])
 
 					if !strings.HasPrefix(match, term) {
 						valid = false
@@ -538,4 +546,25 @@ func (search *search) getArticleURL(id int) string {
 	}
 
 	return search.SiteMap[index].URL
+}
+
+func (search *search) getArticleContent(id int) string {
+	//set index to reasonable value
+	var max uint32 = uint32(len(search.Pages) - 1)
+	var low uint32 = uint32(0)
+	var index uint32 = max
+
+	for search.Pages[index].ID != id {
+		//fmt.Printf("Search for %d @ index %d: %d (low: %d, max: %d) \n", id, index, search.Pages[index].ID, low, max)
+
+		if search.Pages[index].ID > id {
+			max = index
+			index = ((max + low) >> 1)
+		} else {
+			low = index
+			index = ((max + low) >> 1)
+		}
+	}
+
+	return search.Pages[index].Content
 }

@@ -17,6 +17,8 @@ URL: x/food/cheese
 Builds search trie/tree of each word in data with the article id and sentence and article position.
 First strips all tags/html/colourcodes
 
+Use stemming on all terms to allow for i.e (search, searches, searching)
+
 Then returns url for result and highlights search text of article.
 
 ## Config
@@ -35,5 +37,11 @@ or build and run ./search.exe
 ## Build
 go build -o search.exe ./main.go ./app.go ./search.go
 
-## Progress
-- 2020/01/16 Crawl sites, 
+## Progress (TODO)
+- 2020/01/16 Crawl sites
+- 2020/02/05 Minimise payload size
+-- Use stemming to return 
+
+https://uxplanet.org/search-interface-20-things-to-consider-4b1466e98881
+https://lucene.apache.org/solr/guide/7_4/phonetic-matching.html
+
