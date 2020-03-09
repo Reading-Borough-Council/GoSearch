@@ -424,42 +424,42 @@
     "post_name": "homelessness",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/housing/find-a-home/homelessness"
+    "url": "/housing/homelessness"
   },
   {
     "ID": 744,
     "post_name": "homeless-or-at-risk-of-losing-your-home",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/housing/find-a-home/homelessness/homeless-or-at-risk-of-losing-your-home"
+    "url": "/housing/homelessness/homeless-or-at-risk-of-losing-your-home"
   },
   {
     "ID": 745,
     "post_name": "homelessness-reduction-act",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/housing/find-a-home/homelessness/homelessness-reduction-act"
+    "url": "/housing/homelessness/homelessness-reduction-act"
   },
   {
     "ID": 746,
     "post_name": "prevention-duty",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/housing/find-a-home/homelessness/prevention-duty"
+    "url": "/housing/homelessness/prevention-duty"
   },
   {
     "ID": 747,
     "post_name": "relief-duty",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/housing/find-a-home/homelessness/relief-duty"
+    "url": "/housing/homelessness/relief-duty"
   },
   {
     "ID": 748,
     "post_name": "main-duty",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/housing/find-a-home/homelessness/main-duty"
+    "url": "/housing/homelessness/main-duty"
   },
   {
     "ID": 749,
@@ -529,84 +529,84 @@
     "post_name": "landlord-advice",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/housing/reading-rent-with-confidence-scheme/landlord-advice"
+    "url": "/housing/private-renting/reading-rent-with-confidence-scheme/landlord-advice"
   },
   {
     "ID": 759,
     "post_name": "reading-rent-with-confidence-scheme",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/housing/reading-rent-with-confidence-scheme"
+    "url": "/housing/private-renting/reading-rent-with-confidence-scheme"
   },
   {
     "ID": 760,
     "post_name": "about-the-scheme",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/housing/reading-rent-with-confidence-scheme/about-the-scheme"
+    "url": "/housing/private-renting/reading-rent-with-confidence-scheme/about-the-scheme"
   },
   {
     "ID": 761,
     "post_name": "criteria",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/housing/reading-rent-with-confidence-scheme/about-the-scheme/criteria"
+    "url": "/housing/private-renting/reading-rent-with-confidence-scheme/about-the-scheme/criteria"
   },
   {
     "ID": 762,
     "post_name": "detailed-banding-criteria",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/housing/reading-rent-with-confidence-scheme/about-the-scheme/detailed-banding-criteria"
+    "url": "/housing/private-renting/reading-rent-with-confidence-scheme/about-the-scheme/detailed-banding-criteria"
   },
   {
     "ID": 763,
     "post_name": "letting-standards",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/housing/reading-rent-with-confidence-scheme/about-the-scheme/letting-standards"
+    "url": "/housing/private-renting/reading-rent-with-confidence-scheme/about-the-scheme/letting-standards"
   },
   {
     "ID": 764,
     "post_name": "benefits-of-the-scheme",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/housing/reading-rent-with-confidence-scheme/about-the-scheme/benefits-of-the-scheme"
+    "url": "/housing/private-renting/reading-rent-with-confidence-scheme/about-the-scheme/benefits-of-the-scheme"
   },
   {
     "ID": 765,
     "post_name": "self-assess-your-property",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/housing/reading-rent-with-confidence-scheme/about-the-scheme/self-assess-your-property"
+    "url": "/housing/private-renting/reading-rent-with-confidence-scheme/about-the-scheme/self-assess-your-property"
   },
   {
     "ID": 766,
-    "post_name": "apply-here",
+    "post_name": "apply-rrwc",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/housing/apply-here"
+    "url": "/housing/private-renting/reading-rent-with-confidence-scheme/apply-rrwc"
   },
   {
     "ID": 767,
-    "post_name": "contact",
+    "post_name": "contact-rrwc",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/housing/reading-rent-with-confidence-scheme/contact"
+    "url": "/housing/private-renting/reading-rent-with-confidence-scheme/contact-rrwc"
   },
   {
     "ID": 768,
-    "post_name": "properties",
+    "post_name": "rrwc-properties",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/housing/reading-rent-with-confidence-scheme/properties"
+    "url": "/housing/private-renting/reading-rent-with-confidence-scheme/rrwc-properties"
   },
   {
     "ID": 769,
     "post_name": "gold-rated-properties",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/housing/reading-rent-with-confidence-scheme/properties/gold-rated-properties"
+    "url": "/housing/private-renting/reading-rent-with-confidence-scheme/rrwc-properties/gold-rated-properties"
   },
   {
     "ID": 770,
@@ -620,21 +620,21 @@
     "post_name": "silver-rated-properties",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/housing/silver-rated-properties"
+    "url": "/housing/private-renting/reading-rent-with-confidence-scheme/rrwc-properties/silver-rated-properties"
   },
   {
     "ID": 772,
     "post_name": "bronze-rated-properties",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/housing/bronze-rated-properties"
+    "url": "/housing/private-renting/reading-rent-with-confidence-scheme/rrwc-properties/bronze-rated-properties"
   },
   {
     "ID": 773,
     "post_name": "tenant-advice",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/housing/reading-rent-with-confidence-scheme/tenant-advice"
+    "url": "/housing/private-renting/reading-rent-with-confidence-scheme/tenant-advice"
   },
   {
     "ID": 774,
@@ -645,24 +645,24 @@
   },
   {
     "ID": 775,
-    "post_name": "fees",
+    "post_name": "rrwc-fees",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/housing/reading-rent-with-confidence-scheme/fees"
+    "url": "/housing/private-renting/reading-rent-with-confidence-scheme/rrwc-fees"
   },
   {
     "ID": 776,
     "post_name": "rent-guarantee-scheme-rgs",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/housing/rent-guarantee-scheme-rgs"
+    "url": "/housing/private-renting/rent-guarantee-scheme-rgs"
   },
   {
     "ID": 777,
     "post_name": "tenant-fees-act-2019",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/housing/tenant-fees-act-2019"
+    "url": "/housing/private-renting/tenant-fees-act-2019"
   },
   {
     "ID": 778,
@@ -676,42 +676,42 @@
     "post_name": "tenancy-information",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/housing/tenancy-information"
+    "url": "/housing/council-homes/tenancy-information"
   },
   {
     "ID": 780,
     "post_name": "paying-your-rent",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/housing/paying-your-rent"
+    "url": "/housing/council-homes/paying-your-rent"
   },
   {
     "ID": 781,
     "post_name": "repairs",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/housing/repairs"
+    "url": "/housing/council-homes/repairs"
   },
   {
     "ID": 782,
     "post_name": "council-garages",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/housing/council-garages"
+    "url": "/housing/council-homes/council-garages"
   },
   {
     "ID": 783,
     "post_name": "antisocial-behaviour",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/housing/antisocial-behaviour"
+    "url": "/housing/council-homes/antisocial-behaviour"
   },
   {
     "ID": 784,
     "post_name": "housing-performance-information",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/housing/housing-performance-information"
+    "url": "/housing/council-homes/housing-performance-information"
   },
   {
     "ID": 785,
@@ -732,28 +732,28 @@
     "post_name": "right-to-buy",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/housing/right-to-buy"
+    "url": "/housing/council-homes/right-to-buy"
   },
   {
     "ID": 788,
     "post_name": "right-to-buy-policy",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/housing/right-to-buy-policy"
+    "url": "/housing/council-homes/right-to-buy/right-to-buy-policy"
   },
   {
     "ID": 789,
     "post_name": "voids-and-lettings",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/housing/voids-and-lettings"
+    "url": "/housing/council-homes/voids-and-lettings"
   },
   {
     "ID": 790,
     "post_name": "moving-out-checklist",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/housing/moving-out-checklist"
+    "url": "/housing/council-homes/voids-and-lettings/moving-out-checklist"
   },
   {
     "ID": 791,
@@ -767,35 +767,35 @@
     "post_name": "repairs-and-recharges-policy",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/housing/repairs-and-recharges-policy"
+    "url": "/housing/council-homes/voids-and-lettings/repairs-and-recharges-policy"
   },
   {
     "ID": 793,
     "post_name": "death-of-a-tenant",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/housing/death-of-a-tenant"
+    "url": "/housing/council-homes/voids-and-lettings/death-of-a-tenant"
   },
   {
     "ID": 794,
     "post_name": "potential-charges-when-leaving-your-property",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/housing/potential-charges-when-leaving-your-property"
+    "url": "/housing/council-homes/voids-and-lettings/potential-charges-when-leaving-your-property"
   },
   {
     "ID": 795,
     "post_name": "fire-safety-in-reading-residential-tower-blocks-frequently-asked-questions",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/housing/fire-safety-in-reading-residential-tower-blocks-frequently-asked-questions"
+    "url": "/housing/council-homes/fire-safety-in-reading-residential-tower-blocks-frequently-asked-questions"
   },
   {
     "ID": 796,
     "post_name": "wensley-road-development",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/housing/wensley-road-development"
+    "url": "/housing/council-homes/wensley-road-development"
   },
   {
     "ID": 797,
@@ -872,49 +872,49 @@
     "post_name": "universal-credit",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/housing/housing-benefit-and-council-tax-support/discretionary-housing-council-tax-support-payments/universal-credit"
+    "url": "/housing/benefits-and-assistance/universal-credit"
   },
   {
     "ID": 808,
-    "post_name": "about",
+    "post_name": "about-universal-credit",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/housing/housing-benefit-and-council-tax-support/discretionary-housing-council-tax-support-payments/universal-credit/about"
+    "url": "/housing/benefits-and-assistance/universal-credit/about-universal-credit"
   },
   {
     "ID": 809,
-    "post_name": "claiming",
+    "post_name": "claiming-universal-credit",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/housing/housing-benefit-and-council-tax-support/discretionary-housing-council-tax-support-payments/universal-credit/claiming"
+    "url": "/housing/benefits-and-assistance/universal-credit/claiming-universal-credit"
   },
   {
     "ID": 810,
     "post_name": "fee-free-bank-accounts",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/housing/housing-benefit-and-council-tax-support/discretionary-housing-council-tax-support-payments/universal-credit/claiming/fee-free-bank-accounts"
+    "url": "/housing/benefits-and-assistance/universal-credit/claiming-universal-credit/fee-free-bank-accounts"
   },
   {
     "ID": 811,
-    "post_name": "support",
+    "post_name": "support-universal-credit",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/housing/housing-benefit-and-council-tax-support/discretionary-housing-council-tax-support-payments/universal-credit/support"
+    "url": "/housing/benefits-and-assistance/universal-credit/support-universal-credit"
   },
   {
     "ID": 812,
     "post_name": "sanctions",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/housing/housing-benefit-and-council-tax-support/discretionary-housing-council-tax-support-payments/universal-credit/sanctions"
+    "url": "/housing/benefits-and-assistance/universal-credit/sanctions"
   },
   {
     "ID": 813,
-    "post_name": "contact",
+    "post_name": "contact-universal-credit",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/housing/housing-benefit-and-council-tax-support/discretionary-housing-council-tax-support-payments/universal-credit/contact"
+    "url": "/housing/benefits-and-assistance/universal-credit/contact-universal-credit"
   },
   {
     "ID": 814,
@@ -1729,13 +1729,6 @@
     "url": "/transport/parking/motorcycle-parking"
   },
   {
-    "ID": 934,
-    "post_name": "east-reading-study-resident-parking-permit-scheme",
-    "post_type": "page",
-    "post_status": "publish",
-    "url": "/transport/parking/east-reading-study-resident-parking-permit-scheme"
-  },
-  {
     "ID": 935,
     "post_name": "permits",
     "post_type": "page",
@@ -1951,13 +1944,6 @@
     "post_type": "page",
     "post_status": "publish",
     "url": "/transport/permits/terms-and-conditions/parking-permit-terms-and-conditions"
-  },
-  {
-    "ID": 966,
-    "post_name": "car-park-terms-and-conditions",
-    "post_type": "page",
-    "post_status": "publish",
-    "url": "/transport/permits/terms-and-conditions/car-park-terms-and-conditions"
   },
   {
     "ID": 967,
@@ -2387,13 +2373,6 @@
     "url": "/life-events/deaths/help-and-support"
   },
   {
-    "ID": 1032,
-    "post_name": "contact-us",
-    "post_type": "page",
-    "post_status": "publish",
-    "url": "/life-events/deaths/contact-us"
-  },
-  {
     "ID": 1033,
     "post_name": "ceremonies",
     "post_type": "page",
@@ -2406,13 +2385,6 @@
     "post_type": "page",
     "post_status": "publish",
     "url": "/life-events/ceremonies/marriages-civil-partnerships"
-  },
-  {
-    "ID": 1035,
-    "post_name": "approved-premises",
-    "post_type": "page",
-    "post_status": "publish",
-    "url": "/life-events/ceremonies/marriages-civil-partnerships/approved-premises"
   },
   {
     "ID": 1037,
@@ -5058,14 +5030,14 @@
     "post_name": "section-21-notices",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/housing/find-a-home/homelessness/homelessness-reduction-act/section-21-notices"
+    "url": "/housing/homelessness/homelessness-reduction-act/section-21-notices"
   },
   {
     "ID": 2057,
     "post_name": "living-with-friends-and-family-eviction",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/housing/find-a-home/homelessness/homeless-or-at-risk-of-losing-your-home/living-with-friends-and-family-eviction"
+    "url": "/housing/homelessness/homeless-or-at-risk-of-losing-your-home/living-with-friends-and-family-eviction"
   },
   {
     "ID": 2065,
@@ -5163,14 +5135,14 @@
     "post_name": "local-lettings-policy-for-conwy-close-and-bevan-close",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/housing/voids-and-lettings/local-lettings-policy-for-conwy-close-and-bevan-close"
+    "url": "/housing/council-homes/voids-and-lettings/local-lettings-policy-for-conwy-close-and-bevan-close"
   },
   {
     "ID": 2207,
     "post_name": "local-lettings-policy-for-stonewater-st-georges",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/housing/voids-and-lettings/local-lettings-policy-for-stonewater-st-georges"
+    "url": "/housing/council-homes/voids-and-lettings/local-lettings-policy-for-stonewater-st-georges"
   },
   {
     "ID": 2226,
@@ -5734,10 +5706,10 @@
   },
   {
     "ID": 3519,
-    "post_name": "Recycling in Reading",
+    "post_name": "Reminder to EU Citizens in Reading to Apply to Stay in UK",
     "post_type": "news",
     "post_status": "publish",
-    "url": "/news/recycling-in-reading"
+    "url": "/news/reminder-to-eu-citizens-in-reading-to-apply-to-stay-in-uk"
   },
   {
     "ID": 3567,
@@ -5804,10 +5776,10 @@
   },
   {
     "ID": 4323,
-    "post_name": "New Roads",
+    "post_name": "Results of the Reading Community Safety Survey",
     "post_type": "news",
     "post_status": "publish",
-    "url": "/news/new-roads"
+    "url": "/news/results-of-the-reading-community-safety-survey"
   },
   {
     "ID": 4406,
@@ -5825,10 +5797,10 @@
   },
   {
     "ID": 4428,
-    "post_name": "Demo News",
+    "post_name": "£34 million to Accelerate Net Zero Carbon Reading Target",
     "post_type": "news",
     "post_status": "publish",
-    "url": "/news/demo-news"
+    "url": "/news/£34-million-to-accelerate-net-zero-carbon-reading-target"
   },
   {
     "ID": 4448,
@@ -6720,6 +6692,13 @@
     "url": "/links/test"
   },
   {
+    "ID": 5716,
+    "post_name": "GLL announced as Reading's new leisure partner",
+    "post_type": "news",
+    "post_status": "publish",
+    "url": "/news/gll-announced-as-reading's-new-leisure-partner"
+  },
+  {
     "ID": 6007,
     "post_name": "coronavirus-public-information",
     "post_type": "page",
@@ -6788,5 +6767,33 @@
     "post_type": "page",
     "post_status": "publish",
     "url": "/council/policies-finance-and-legal-information/borough-profile/joint-stategic-needs-assessment-jsna/local-research-and-evidence/published-reports"
+  },
+  {
+    "ID": 6329,
+    "post_name": "library-charges",
+    "post_type": "page",
+    "post_status": "publish",
+    "url": "/leisure/libraries/library-charges"
+  },
+  {
+    "ID": 6547,
+    "post_name": "carers-steering-group",
+    "post_type": "page",
+    "post_status": "publish",
+    "url": "/council/democracy/list-of-committees/carers-steering-group"
+  },
+  {
+    "ID": 6646,
+    "post_name": "accessibility",
+    "post_type": "page",
+    "post_status": "publish",
+    "url": "/council/accessibility"
+  },
+  {
+    "ID": 6647,
+    "post_name": "Stronger Together Project Showcases Success",
+    "post_type": "news",
+    "post_status": "publish",
+    "url": "/news/stronger-together-project-showcases-success"
   }
 ]

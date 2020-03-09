@@ -68,7 +68,7 @@ func NewSearch() *search {
 	return &search
 }
 
-// NewResultArray
+// NewResultArray make
 func NewResultArray() []result {
 	locArr := make([]location, 0)
 	initial := result{Name: "", Location: locArr}
@@ -99,7 +99,7 @@ func NewPage(id int, title, content string) *page {
 
 // func (search *Search) DoComplexSearch(query string, count int) []result {
 // 	search.D
-// }
+// }33
 
 // DoSimpleConcurrentSearch split up input and run search
 // Get results for each individual term
@@ -409,7 +409,7 @@ func (search *search) PopulateJSON(dataFilePath, siteMapPath string) {
 			search.AddWord(strings.ToLower(word), location)
 		}
 
-		//now add for each word of title type
+		//now add for each word of content type
 		// content := strings.Fields(pages[p].Content)
 		// for _, word := range content {
 		// 	search.AddWord(word, pages[p].ID)
@@ -437,7 +437,7 @@ func (search *search) PopulateJSONStemmed(dataFilePath, siteMapPath string) {
 			search.AddWord(strings.ToLower(wordStem), location)
 		}
 
-		//now add for each word of title type
+		//now add for each word of content type
 		// content := strings.Fields(pages[p].Content)
 		// for _, word := range content {
 		// 	search.AddWord(word, pages[p].ID)
@@ -506,6 +506,7 @@ func loadSiteMap(path string) []site {
 	return siteMap
 }
 
+//lazy binary search approx 1000pages
 func (search *search) getArticleTitle(id int) string {
 	//set index to reasonable value
 	var max uint32 = uint32(len(search.Pages) - 1)
