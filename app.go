@@ -51,8 +51,8 @@ func (a *App) Run(port int) {
 }
 
 func (a *App) initializeRoutes() {
-	a.Router.HandleFunc("/v1/search/{query}", a.searchHandler).Methods("GET")
-	a.Router.HandleFunc("/v1/fullsearch/{query}", a.fullSearchHandler).Methods("GET")
+	a.Router.HandleFunc("/v1/search/short/{query}", a.searchHandler).Methods("GET")
+	a.Router.HandleFunc("/v1/search/full/{query}", a.fullSearchHandler).Methods("GET")
 	a.Router.HandleFunc("/v1/ping", a.ping).Methods("GET")
 }
 

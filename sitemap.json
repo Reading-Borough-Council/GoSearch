@@ -473,42 +473,42 @@
     "post_name": "houses-in-multiple-occupation-hmos",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/housing/houses-in-multiple-occupation-hmos"
+    "url": "/housing/private-renting/houses-in-multiple-occupation-hmos"
   },
   {
     "ID": 751,
     "post_name": "the-deposit-protection-scheme-dps",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/housing/the-deposit-protection-scheme-dps"
+    "url": "/housing/private-renting/the-deposit-protection-scheme-dps"
   },
   {
     "ID": 752,
     "post_name": "landlord-safety-responsibilities",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/housing/landlord-safety-responsibilities"
+    "url": "/housing/private-renting/landlord-safety-responsibilities"
   },
   {
     "ID": 753,
     "post_name": "gas-safety",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/housing/gas-safety"
+    "url": "/housing/private-renting/gas-safety"
   },
   {
     "ID": 754,
     "post_name": "illegal-evictions",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/housing/illegal-evictions"
+    "url": "/housing/private-renting/illegal-evictions"
   },
   {
     "ID": 755,
     "post_name": "assured-shorthold-tenancies",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/housing/assured-shorthold-tenancies"
+    "url": "/housing/private-renting/assured-shorthold-tenancies"
   },
   {
     "ID": 756,
@@ -522,7 +522,7 @@
     "post_name": "right-to-rent",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/housing/right-to-rent"
+    "url": "/housing/private-renting/right-to-rent"
   },
   {
     "ID": 758,
@@ -613,7 +613,7 @@
     "post_name": "david-medcraft",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/housing/david-medcraft"
+    "url": "/housing/private-renting/reading-rent-with-confidence-scheme/rrwc-properties/gold-rated-properties/david-medcraft"
   },
   {
     "ID": 771,
@@ -718,14 +718,14 @@
     "post_name": "housing-service-standards",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/housing/housing-service-standards"
+    "url": "/housing/council-homes/housing-performance-information/housing-service-standards"
   },
   {
     "ID": 786,
     "post_name": "housing-annual-report-and-summary-2018",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/housing/housing-annual-report-and-summary-2018"
+    "url": "/housing/council-homes/housing-performance-information/housing-annual-report-and-summary-2018"
   },
   {
     "ID": 787,
@@ -760,7 +760,7 @@
     "post_name": "re-let-standard-policy-for-void-properties",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/housing/re-let-standard-policy-for-void-properties"
+    "url": "/housing/council-homes/voids-and-lettings/re-let-standard-policy-for-void-properties"
   },
   {
     "ID": 792,
@@ -809,7 +809,7 @@
     "post_name": "housing-benefit-and-council-tax-support",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/housing/housing-benefit-and-council-tax-support"
+    "url": "/housing/benefits-and-assistance/housing-benefit-and-council-tax-support"
   },
   {
     "ID": 799,
@@ -823,49 +823,49 @@
     "post_name": "paying-housing-benefit",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/housing/housing-benefit-and-council-tax-support/paying-housing-benefit"
+    "url": "/housing/benefits-and-assistance/housing-benefit-and-council-tax-support/paying-housing-benefit"
   },
   {
     "ID": 801,
     "post_name": "changes-in-circumstances",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/housing/housing-benefit-and-council-tax-support/changes-in-circumstances"
+    "url": "/housing/benefits-and-assistance/housing-benefit-and-council-tax-support/changes-in-circumstances"
   },
   {
     "ID": 802,
     "post_name": "housing-benefit-overpayments",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/housing/housing-benefit-and-council-tax-support/housing-benefit-overpayments"
+    "url": "/housing/benefits-and-assistance/housing-benefit-and-council-tax-support/housing-benefit-overpayments"
   },
   {
     "ID": 803,
-    "post_name": "information-about-deas-for-customers",
+    "post_name": "information-about-deas-for-customers-2",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/housing/information-about-deas-for-customers"
+    "url": "/housing/benefits-and-assistance/housing-benefit-and-council-tax-support/housing-benefit-overpayments/information-about-deas-for-customers-2"
   },
   {
     "ID": 804,
-    "post_name": "direct-earnings-attachments-for-employers",
+    "post_name": "direct-earnings-attachments-for-employers-2",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/housing/direct-earnings-attachments-for-employers"
+    "url": "/housing/benefits-and-assistance/housing-benefit-and-council-tax-support/housing-benefit-overpayments/direct-earnings-attachments-for-employers-2"
   },
   {
     "ID": 805,
     "post_name": "appeals",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/housing/housing-benefit-and-council-tax-support/appeals"
+    "url": "/housing/benefits-and-assistance/housing-benefit-and-council-tax-support/appeals"
   },
   {
     "ID": 806,
     "post_name": "discretionary-housing-council-tax-support-payments",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/housing/housing-benefit-and-council-tax-support/discretionary-housing-council-tax-support-payments"
+    "url": "/housing/benefits-and-assistance/housing-benefit-and-council-tax-support/discretionary-housing-council-tax-support-payments"
   },
   {
     "ID": 807,
@@ -1072,213 +1072,213 @@
   },
   {
     "ID": 839,
-    "post_name": "find-care-support",
+    "post_name": "adultcare",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/adult-care/find-care-support"
+    "url": "/adult-care/adultcare"
   },
   {
     "ID": 840,
     "post_name": "about-adult-social-care",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/adult-care/find-care-support/about-adult-social-care"
+    "url": "/adult-care/adultcare/about-adult-social-care"
   },
   {
     "ID": 841,
     "post_name": "activities-hobbies-and-leisure",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/adult-care/find-care-support/activities-hobbies-and-leisure"
+    "url": "/adult-care/adultcare/activities-hobbies-and-leisure"
   },
   {
     "ID": 842,
     "post_name": "care-assessment",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/adult-care/find-care-support/care-assessment"
+    "url": "/adult-care/adultcare/care-assessment"
   },
   {
     "ID": 843,
     "post_name": "care-homes",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/adult-care/find-care-support/care-homes"
+    "url": "/adult-care/adultcare/care-homes"
   },
   {
     "ID": 844,
     "post_name": "direct-payments",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/adult-care/find-care-support/direct-payments"
+    "url": "/adult-care/adultcare/direct-payments"
   },
   {
     "ID": 845,
     "post_name": "help-living-at-home",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/adult-care/find-care-support/help-living-at-home"
+    "url": "/adult-care/adultcare/help-living-at-home"
   },
   {
     "ID": 846,
     "post_name": "assistive-technology",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/adult-care/find-care-support/help-living-at-home/assistive-technology"
+    "url": "/adult-care/adultcare/help-living-at-home/assistive-technology"
   },
   {
     "ID": 847,
     "post_name": "help-with-heating-costs",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/adult-care/find-care-support/help-living-at-home/help-with-heating-costs"
+    "url": "/adult-care/adultcare/help-living-at-home/help-with-heating-costs"
   },
   {
     "ID": 848,
     "post_name": "help-with-housing-costs",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/adult-care/find-care-support/help-living-at-home/help-with-housing-costs"
+    "url": "/adult-care/adultcare/help-living-at-home/help-with-housing-costs"
   },
   {
     "ID": 849,
     "post_name": "homecare",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/adult-care/find-care-support/help-living-at-home/homecare"
+    "url": "/adult-care/adultcare/help-living-at-home/homecare"
   },
   {
     "ID": 850,
     "post_name": "personal-assistants",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/adult-care/find-care-support/help-living-at-home/personal-assistants"
+    "url": "/adult-care/adultcare/help-living-at-home/personal-assistants"
   },
   {
     "ID": 851,
     "post_name": "shared-lives-scheme",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/adult-care/find-care-support/help-living-at-home/shared-lives-scheme"
+    "url": "/adult-care/adultcare/help-living-at-home/shared-lives-scheme"
   },
   {
     "ID": 852,
     "post_name": "supported-living",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/adult-care/find-care-support/help-living-at-home/supported-living"
+    "url": "/adult-care/adultcare/help-living-at-home/supported-living"
   },
   {
     "ID": 853,
     "post_name": "help-to-get-out-and-about",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/adult-care/find-care-support/help-to-get-out-and-about"
+    "url": "/adult-care/adultcare/help-to-get-out-and-about"
   },
   {
     "ID": 854,
     "post_name": "help-with-decision-making",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/adult-care/find-care-support/help-with-decision-making"
+    "url": "/adult-care/adultcare/help-with-decision-making"
   },
   {
     "ID": 855,
     "post_name": "independent-advice-about-care",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/adult-care/find-care-support/independent-advice-about-care"
+    "url": "/adult-care/adultcare/independent-advice-about-care"
   },
   {
     "ID": 856,
     "post_name": "information-for-care-providers",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/adult-care/find-care-support/information-for-care-providers"
+    "url": "/adult-care/adultcare/information-for-care-providers"
   },
   {
     "ID": 857,
     "post_name": "home-care-framework-2017-18",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/adult-care/find-care-support/information-for-care-providers/home-care-framework-2017-18"
+    "url": "/adult-care/adultcare/information-for-care-providers/home-care-framework-2017-18"
   },
   {
     "ID": 858,
     "post_name": "supported-living-accreditation-select-list",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/adult-care/find-care-support/information-for-care-providers/supported-living-accreditation-select-list"
+    "url": "/adult-care/adultcare/information-for-care-providers/supported-living-accreditation-select-list"
   },
   {
     "ID": 859,
     "post_name": "planning-for-your-future-care-needs",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/adult-care/find-care-support/planning-for-your-future-care-needs"
+    "url": "/adult-care/adultcare/planning-for-your-future-care-needs"
   },
   {
     "ID": 860,
     "post_name": "reablement-and-after-care",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/adult-care/find-care-support/reablement-and-after-care"
+    "url": "/adult-care/adultcare/reablement-and-after-care"
   },
   {
     "ID": 861,
     "post_name": "reading-services-guide",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/adult-care/find-care-support/reading-services-guide"
+    "url": "/adult-care/adultcare/reading-services-guide"
   },
   {
     "ID": 862,
     "post_name": "support-services",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/adult-care/find-care-support/support-services"
+    "url": "/adult-care/adultcare/support-services"
   },
   {
     "ID": 863,
     "post_name": "dementia-and-alzheimers",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/adult-care/find-care-support/support-services/dementia-and-alzheimers"
+    "url": "/adult-care/adultcare/support-services/dementia-and-alzheimers"
   },
   {
     "ID": 864,
     "post_name": "learning-disability-services",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/adult-care/find-care-support/support-services/learning-disability-services"
+    "url": "/adult-care/adultcare/support-services/learning-disability-services"
   },
   {
     "ID": 865,
     "post_name": "palliative-care",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/adult-care/find-care-support/support-services/palliative-care"
+    "url": "/adult-care/adultcare/support-services/palliative-care"
   },
   {
     "ID": 866,
     "post_name": "sensory-needs-services",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/adult-care/find-care-support/support-services/sensory-needs-services"
+    "url": "/adult-care/adultcare/support-services/sensory-needs-services"
   },
   {
     "ID": 867,
     "post_name": "nhs",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/adult-care/find-care-support/support-services/nhs"
+    "url": "/adult-care/adultcare/support-services/nhs"
   },
   {
     "ID": 868,
     "post_name": "supported-learning-training-and-working",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/adult-care/find-care-support/supported-learning-training-and-working"
+    "url": "/adult-care/adultcare/supported-learning-training-and-working"
   },
   {
     "ID": 869,
@@ -1961,10 +1961,10 @@
   },
   {
     "ID": 969,
-    "post_name": "concessionary-travel",
+    "post_name": "concessionarytravel",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/transport/concessionary-travel"
+    "url": "/transport/concessionarytravel"
   },
   {
     "ID": 970,
@@ -2034,7 +2034,7 @@
     "post_name": "red-route",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/transport/red-route"
+    "url": "/transport/transport-projects/red-route"
   },
   {
     "ID": 980,
@@ -2429,13 +2429,6 @@
     "url": "/life-events/register-office-fees-and-charges"
   },
   {
-    "ID": 1043,
-    "post_name": "terms-and-conditions",
-    "post_type": "page",
-    "post_status": "publish",
-    "url": "/life-events/terms-and-conditions"
-  },
-  {
     "ID": 1044,
     "post_name": "register-office-location-and-directions",
     "post_type": "page",
@@ -2490,356 +2483,6 @@
     "post_type": "page",
     "post_status": "publish",
     "url": "/leisure/libraries/renew"
-  },
-  {
-    "ID": 1053,
-    "post_name": "events-and-activities",
-    "post_type": "page",
-    "post_status": "publish",
-    "url": "/leisure/libraries/events-and-activities"
-  },
-  {
-    "ID": 1054,
-    "post_name": "rhymetimes-central",
-    "post_type": "page",
-    "post_status": "publish",
-    "url": "/leisure/libraries/events-and-activities/rhymetimes-central"
-  },
-  {
-    "ID": 1055,
-    "post_name": "coffee-morning-battle-library-every-3rd-thursday-of-the-month",
-    "post_type": "page",
-    "post_status": "publish",
-    "url": "/leisure/libraries/events-and-activities/coffee-morning-battle-library-every-3rd-thursday-of-the-month"
-  },
-  {
-    "ID": 1056,
-    "post_name": "coffee-morning-southcote-library-tuesdays",
-    "post_type": "page",
-    "post_status": "publish",
-    "url": "/leisure/libraries/events-and-activities/coffee-morning-southcote-library-tuesdays"
-  },
-  {
-    "ID": 1057,
-    "post_name": "board-games-club-central-library-every-tuesday",
-    "post_type": "page",
-    "post_status": "publish",
-    "url": "/leisure/libraries/events-and-activities/board-games-club-central-library-every-tuesday"
-  },
-  {
-    "ID": 1058,
-    "post_name": "coffee-morning-whitley-library-last-tuesday-of-the-month",
-    "post_type": "page",
-    "post_status": "publish",
-    "url": "/leisure/libraries/events-and-activities/coffee-morning-whitley-library-last-tuesday-of-the-month"
-  },
-  {
-    "ID": 1059,
-    "post_name": "storytime-caversham",
-    "post_type": "page",
-    "post_status": "publish",
-    "url": "/leisure/libraries/events-and-activities/storytime-caversham"
-  },
-  {
-    "ID": 1060,
-    "post_name": "storytimes-battle",
-    "post_type": "page",
-    "post_status": "publish",
-    "url": "/leisure/libraries/events-and-activities/storytimes-battle"
-  },
-  {
-    "ID": 1061,
-    "post_name": "reading-voluntary-action-digital-champions",
-    "post_type": "page",
-    "post_status": "publish",
-    "url": "/leisure/libraries/events-and-activities/reading-voluntary-action-digital-champions"
-  },
-  {
-    "ID": 1062,
-    "post_name": "breastfeeding-support-clinic",
-    "post_type": "page",
-    "post_status": "publish",
-    "url": "/leisure/libraries/events-and-activities/breastfeeding-support-clinic"
-  },
-  {
-    "ID": 1063,
-    "post_name": "coffee-and-craft",
-    "post_type": "page",
-    "post_status": "publish",
-    "url": "/leisure/libraries/events-and-activities/coffee-and-craft"
-  },
-  {
-    "ID": 1064,
-    "post_name": "games-club",
-    "post_type": "page",
-    "post_status": "publish",
-    "url": "/leisure/libraries/events-and-activities/games-club"
-  },
-  {
-    "ID": 1065,
-    "post_name": "baby-clinic-every-tuesday",
-    "post_type": "page",
-    "post_status": "publish",
-    "url": "/leisure/libraries/events-and-activities/baby-clinic-every-tuesday"
-  },
-  {
-    "ID": 1066,
-    "post_name": "toddler-craft-every-friday",
-    "post_type": "page",
-    "post_status": "publish",
-    "url": "/leisure/libraries/events-and-activities/toddler-craft-every-friday"
-  },
-  {
-    "ID": 1067,
-    "post_name": "board-game-club-for-age-9-12-every-tuesday",
-    "post_type": "page",
-    "post_status": "publish",
-    "url": "/leisure/libraries/events-and-activities/board-game-club-for-age-9-12-every-tuesday"
-  },
-  {
-    "ID": 1068,
-    "post_name": "toddler-playtime",
-    "post_type": "page",
-    "post_status": "publish",
-    "url": "/leisure/libraries/events-and-activities/toddler-playtime"
-  },
-  {
-    "ID": 1069,
-    "post_name": "saturday-social",
-    "post_type": "page",
-    "post_status": "publish",
-    "url": "/leisure/libraries/events-and-activities/saturday-social"
-  },
-  {
-    "ID": 1070,
-    "post_name": "toddler-craft-battle",
-    "post_type": "page",
-    "post_status": "publish",
-    "url": "/leisure/libraries/events-and-activities/toddler-craft-battle"
-  },
-  {
-    "ID": 1071,
-    "post_name": "digital-volunteers",
-    "post_type": "page",
-    "post_status": "publish",
-    "url": "/leisure/libraries/events-and-activities/digital-volunteers"
-  },
-  {
-    "ID": 1072,
-    "post_name": "rhymetimes-tilehurst",
-    "post_type": "page",
-    "post_status": "publish",
-    "url": "/leisure/libraries/events-and-activities/rhymetimes-tilehurst"
-  },
-  {
-    "ID": 1073,
-    "post_name": "rhymetime",
-    "post_type": "page",
-    "post_status": "publish",
-    "url": "/leisure/libraries/events-and-activities/rhymetime"
-  },
-  {
-    "ID": 1074,
-    "post_name": "reading-and-clonmel-a-history-of-twinning",
-    "post_type": "page",
-    "post_status": "publish",
-    "url": "/leisure/libraries/events-and-activities/reading-and-clonmel-a-history-of-twinning"
-  },
-  {
-    "ID": 1075,
-    "post_name": "make-brain-hats-and-play-memory-games",
-    "post_type": "page",
-    "post_status": "publish",
-    "url": "/leisure/libraries/events-and-activities/make-brain-hats-and-play-memory-games"
-  },
-  {
-    "ID": 1076,
-    "post_name": "reading-museum-on-wheels-museum-craft",
-    "post_type": "page",
-    "post_status": "publish",
-    "url": "/leisure/libraries/events-and-activities/reading-museum-on-wheels-museum-craft"
-  },
-  {
-    "ID": 1077,
-    "post_name": "coffee-morning-aspects-of-autism-talk",
-    "post_type": "page",
-    "post_status": "publish",
-    "url": "/leisure/libraries/events-and-activities/coffee-morning-aspects-of-autism-talk"
-  },
-  {
-    "ID": 1078,
-    "post_name": "story-writing-workshop-with-explore-learning-ages-5-7",
-    "post_type": "page",
-    "post_status": "publish",
-    "url": "/leisure/libraries/events-and-activities/story-writing-workshop-with-explore-learning-ages-5-7"
-  },
-  {
-    "ID": 1079,
-    "post_name": "story-writing-workshop-with-explore-learning-ages-8-14",
-    "post_type": "page",
-    "post_status": "publish",
-    "url": "/leisure/libraries/events-and-activities/story-writing-workshop-with-explore-learning-ages-8-14"
-  },
-  {
-    "ID": 1080,
-    "post_name": "spring-craft-session",
-    "post_type": "page",
-    "post_status": "publish",
-    "url": "/leisure/libraries/events-and-activities/spring-craft-session"
-  },
-  {
-    "ID": 1081,
-    "post_name": "come-and-make-barmy-bunnies-drop-in-childrens-craft-session",
-    "post_type": "page",
-    "post_status": "publish",
-    "url": "/leisure/libraries/events-and-activities/come-and-make-barmy-bunnies-drop-in-childrens-craft-session"
-  },
-  {
-    "ID": 1082,
-    "post_name": "tile-decoupage-craft-session",
-    "post_type": "page",
-    "post_status": "publish",
-    "url": "/leisure/libraries/events-and-activities/tile-decoupage-craft-session"
-  },
-  {
-    "ID": 1083,
-    "post_name": "easter-egg-craft",
-    "post_type": "page",
-    "post_status": "publish",
-    "url": "/leisure/libraries/events-and-activities/easter-egg-craft"
-  },
-  {
-    "ID": 1084,
-    "post_name": "funky-fairies-and-kool-knights",
-    "post_type": "page",
-    "post_status": "publish",
-    "url": "/leisure/libraries/events-and-activities/funky-fairies-and-kool-knights"
-  },
-  {
-    "ID": 1085,
-    "post_name": "crafty-animals",
-    "post_type": "page",
-    "post_status": "publish",
-    "url": "/leisure/libraries/events-and-activities/crafty-animals"
-  },
-  {
-    "ID": 1086,
-    "post_name": "roll-up-roll-up-and-help-us-make-a-circus-display",
-    "post_type": "page",
-    "post_status": "publish",
-    "url": "/leisure/libraries/events-and-activities/roll-up-roll-up-and-help-us-make-a-circus-display"
-  },
-  {
-    "ID": 1087,
-    "post_name": "make-pirate-flags",
-    "post_type": "page",
-    "post_status": "publish",
-    "url": "/leisure/libraries/events-and-activities/make-pirate-flags"
-  },
-  {
-    "ID": 1088,
-    "post_name": "its-hamma-time",
-    "post_type": "page",
-    "post_status": "publish",
-    "url": "/leisure/libraries/events-and-activities/its-hamma-time"
-  },
-  {
-    "ID": 1089,
-    "post_name": "were-going-on-a-bear-hunt-craft-and-storytime",
-    "post_type": "page",
-    "post_status": "publish",
-    "url": "/leisure/libraries/events-and-activities/were-going-on-a-bear-hunt-craft-and-storytime"
-  },
-  {
-    "ID": 1090,
-    "post_name": "hidden-stories-on-tour",
-    "post_type": "page",
-    "post_status": "publish",
-    "url": "/leisure/libraries/events-and-activities/hidden-stories-on-tour"
-  },
-  {
-    "ID": 1091,
-    "post_name": "half-pint-of-science",
-    "post_type": "page",
-    "post_status": "publish",
-    "url": "/leisure/libraries/events-and-activities/half-pint-of-science"
-  },
-  {
-    "ID": 1092,
-    "post_name": "bulgarian-rhymetime-for-under-fives",
-    "post_type": "page",
-    "post_status": "publish",
-    "url": "/leisure/libraries/events-and-activities/bulgarian-rhymetime-for-under-fives"
-  },
-  {
-    "ID": 1093,
-    "post_name": "italian-rhymetime-for-under-fives",
-    "post_type": "page",
-    "post_status": "publish",
-    "url": "/leisure/libraries/events-and-activities/italian-rhymetime-for-under-fives"
-  },
-  {
-    "ID": 1094,
-    "post_name": "russian-rhymetime-for-under-fives",
-    "post_type": "page",
-    "post_status": "publish",
-    "url": "/leisure/libraries/events-and-activities/russian-rhymetime-for-under-fives"
-  },
-  {
-    "ID": 1095,
-    "post_name": "finnish-rhymetime-for-under-fives",
-    "post_type": "page",
-    "post_status": "publish",
-    "url": "/leisure/libraries/events-and-activities/finnish-rhymetime-for-under-fives"
-  },
-  {
-    "ID": 1096,
-    "post_name": "german-rhymetime-for-under-fives",
-    "post_type": "page",
-    "post_status": "publish",
-    "url": "/leisure/libraries/events-and-activities/german-rhymetime-for-under-fives"
-  },
-  {
-    "ID": 1097,
-    "post_name": "awesome-roman-archaeology",
-    "post_type": "page",
-    "post_status": "publish",
-    "url": "/leisure/libraries/events-and-activities/awesome-roman-archaeology"
-  },
-  {
-    "ID": 1098,
-    "post_name": "kitchen-chemistry",
-    "post_type": "page",
-    "post_status": "publish",
-    "url": "/leisure/libraries/events-and-activities/kitchen-chemistry"
-  },
-  {
-    "ID": 1099,
-    "post_name": "free-rhymetime-in-forbury-gardens",
-    "post_type": "page",
-    "post_status": "publish",
-    "url": "/leisure/libraries/events-and-activities/free-rhymetime-in-forbury-gardens"
-  },
-  {
-    "ID": 1100,
-    "post_name": "murder-in-the-library-come-along-and-be-a-detective",
-    "post_type": "page",
-    "post_status": "publish",
-    "url": "/leisure/libraries/events-and-activities/murder-in-the-library-come-along-and-be-a-detective"
-  },
-  {
-    "ID": 1101,
-    "post_name": "slime-time",
-    "post_type": "page",
-    "post_status": "publish",
-    "url": "/leisure/libraries/events-and-activities/slime-time"
-  },
-  {
-    "ID": 1102,
-    "post_name": "cancelled-meet-the-author-stacey-halls-the-familiars",
-    "post_type": "page",
-    "post_status": "publish",
-    "url": "/leisure/libraries/events-and-activities/cancelled-meet-the-author-stacey-halls-the-familiars"
   },
   {
     "ID": 1103,
@@ -2996,20 +2639,6 @@
     "url": "/leisure/libraries/aboutourlibraries/what-are-your-charges"
   },
   {
-    "ID": 1125,
-    "post_name": "do-you-run-any-activities-for-children-in-the-libraries",
-    "post_type": "page",
-    "post_status": "publish",
-    "url": "/leisure/libraries/aboutourlibraries/do-you-run-any-activities-for-children-in-the-libraries"
-  },
-  {
-    "ID": 1126,
-    "post_name": "do-you-run-any-activities-for-adults-in-the-libraries",
-    "post_type": "page",
-    "post_status": "publish",
-    "url": "/leisure/libraries/aboutourlibraries/do-you-run-any-activities-for-adults-in-the-libraries"
-  },
-  {
     "ID": 1127,
     "post_name": "can-you-help-me-find-out-about-local-and-family-history",
     "post_type": "page",
@@ -3029,20 +2658,6 @@
     "post_type": "page",
     "post_status": "publish",
     "url": "/leisure/libraries/aboutourlibraries/services-for-book-groups-or-other-groups"
-  },
-  {
-    "ID": 1130,
-    "post_name": "can-i-use-the-internet-for-free-in-the-libraries",
-    "post_type": "page",
-    "post_status": "publish",
-    "url": "/leisure/libraries/aboutourlibraries/can-i-use-the-internet-for-free-in-the-libraries"
-  },
-  {
-    "ID": 1131,
-    "post_name": "is-there-wifi-in-the-libraries",
-    "post_type": "page",
-    "post_status": "publish",
-    "url": "/leisure/libraries/aboutourlibraries/is-there-wifi-in-the-libraries"
   },
   {
     "ID": 1132,
@@ -4025,102 +3640,95 @@
     "url": "/planning/planning-enforcement"
   },
   {
-    "ID": 1273,
-    "post_name": "more-planning",
-    "post_type": "page",
-    "post_status": "publish",
-    "url": "/planning/more-planning"
-  },
-  {
     "ID": 1274,
     "post_name": "conservation-areas-listed-buildings",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/planning/more-planning/conservation-areas-listed-buildings"
+    "url": "/planning/conservation-areas-listed-buildings"
   },
   {
     "ID": 1275,
     "post_name": "reading-biodiversity-action-plan",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/planning/more-planning/reading-biodiversity-action-plan"
+    "url": "/planning/reading-biodiversity-action-plan"
   },
   {
     "ID": 1276,
     "post_name": "trees",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/planning/more-planning/trees"
+    "url": "/planning/trees"
   },
   {
     "ID": 1277,
     "post_name": "high-hedges",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/planning/more-planning/high-hedges"
+    "url": "/planning/high-hedges"
   },
   {
     "ID": 1278,
     "post_name": "guidance-for-making-a-complaint",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/planning/more-planning/high-hedges/guidance-for-making-a-complaint"
+    "url": "/planning/high-hedges/guidance-for-making-a-complaint"
   },
   {
     "ID": 1279,
     "post_name": "emergency-planning",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/planning/more-planning/emergency-planning"
+    "url": "/planning/emergency-planning"
   },
   {
     "ID": 1280,
     "post_name": "land-charges-register",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/planning/more-planning/land-charges-register"
+    "url": "/planning/land-charges-register"
   },
   {
     "ID": 1281,
     "post_name": "street-naming-numbering",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/planning/more-planning/street-naming-numbering"
+    "url": "/planning/street-naming-numbering"
   },
   {
     "ID": 1282,
     "post_name": "landowner-statements",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/planning/more-planning/landowner-statements"
+    "url": "/planning/landowner-statements"
   },
   {
     "ID": 1283,
     "post_name": "planning-admin-charges",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/planning/more-planning/planning-admin-charges"
+    "url": "/planning/planning-admin-charges"
   },
   {
     "ID": 1284,
     "post_name": "article-4-directions",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/planning/more-planning/article-4-directions"
+    "url": "/planning/article-4-directions"
   },
   {
     "ID": 1285,
     "post_name": "transport-development-control",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/planning/more-planning/transport-development-control"
+    "url": "/planning/transport-development-control"
   },
   {
     "ID": 1286,
     "post_name": "planning-objections",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/planning/more-planning/planning-objections"
+    "url": "/planning/planning-objections"
   },
   {
     "ID": 1287,
@@ -4593,66 +4201,66 @@
   },
   {
     "ID": 1357,
-    "post_name": "garden-waste-service",
+    "post_name": "garden-waste",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/environment/waste-and-recycling/garden-waste-service"
+    "url": "/environment/waste-and-recycling/garden-waste"
   },
   {
     "ID": 1358,
     "post_name": "how-do-i-order-an-additional-or-replacement-green-bin-or-bag",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/environment/waste-and-recycling/garden-waste-service/how-do-i-order-an-additional-or-replacement-green-bin-or-bag"
+    "url": "/environment/waste-and-recycling/garden-waste/how-do-i-order-an-additional-or-replacement-green-bin-or-bag"
   },
   {
     "ID": 1359,
     "post_name": "what-if-my-green-bin-collection-is-missed",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/environment/waste-and-recycling/garden-waste-service/what-if-my-green-bin-collection-is-missed"
+    "url": "/environment/waste-and-recycling/garden-waste/what-if-my-green-bin-collection-is-missed"
   },
   {
     "ID": 1360,
     "post_name": "how-do-i-leave-the-service",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/environment/waste-and-recycling/garden-waste-service/how-do-i-leave-the-service"
+    "url": "/environment/waste-and-recycling/garden-waste/how-do-i-leave-the-service"
   },
   {
     "ID": 1361,
     "post_name": "how-do-i-compost",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/environment/waste-and-recycling/garden-waste-service/how-do-i-compost"
+    "url": "/environment/waste-and-recycling/garden-waste/how-do-i-compost"
   },
   {
     "ID": 1362,
     "post_name": "can-food-waste-go-into-the-garden-waste-bins",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/environment/waste-and-recycling/garden-waste-service/can-food-waste-go-into-the-garden-waste-bins"
+    "url": "/environment/waste-and-recycling/garden-waste/can-food-waste-go-into-the-garden-waste-bins"
   },
   {
     "ID": 1363,
     "post_name": "what-happens-to-my-garden-waste",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/environment/waste-and-recycling/garden-waste-service/what-happens-to-my-garden-waste"
+    "url": "/environment/waste-and-recycling/garden-waste/what-happens-to-my-garden-waste"
   },
   {
     "ID": 1364,
     "post_name": "leaves-from-other-peoples-or-council-owned-trees-can-fall-onto-my-property-can-i-get-these-collected-for-free",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/environment/waste-and-recycling/garden-waste-service/leaves-from-other-peoples-or-council-owned-trees-can-fall-onto-my-property-can-i-get-these-collected-for-free"
+    "url": "/environment/waste-and-recycling/garden-waste/leaves-from-other-peoples-or-council-owned-trees-can-fall-onto-my-property-can-i-get-these-collected-for-free"
   },
   {
     "ID": 1365,
     "post_name": "garden-waste-collection-service-terms-and-conditions",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/environment/waste-and-recycling/garden-waste-service/garden-waste-collection-service-terms-and-conditions"
+    "url": "/environment/waste-and-recycling/garden-waste/garden-waste-collection-service-terms-and-conditions"
   },
   {
     "ID": 1366,
@@ -5009,7 +4617,7 @@
     "post_name": "summary-of-hmo-regulations",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/housing/houses-in-multiple-occupation-hmos/summary-of-hmo-regulations"
+    "url": "/housing/private-renting/houses-in-multiple-occupation-hmos/summary-of-hmo-regulations"
   },
   {
     "ID": 2037,
@@ -5163,28 +4771,28 @@
     "post_name": "information-about-deas-for-customers",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/housing/housing-benefit-and-council-tax-support/housing-benefit-overpayments/information-about-deas-for-customers"
+    "url": "/housing/benefits-and-assistance/housing-benefit-and-council-tax-support/housing-benefit-overpayments/information-about-deas-for-customers"
   },
   {
     "ID": 2251,
     "post_name": "direct-earnings-attachments-for-employers",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/housing/housing-benefit-and-council-tax-support/housing-benefit-overpayments/direct-earnings-attachments-for-employers"
+    "url": "/housing/benefits-and-assistance/housing-benefit-and-council-tax-support/housing-benefit-overpayments/direct-earnings-attachments-for-employers"
   },
   {
     "ID": 2260,
     "post_name": "discretionary-housing-payment-policy-2019-2020",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/housing/housing-benefit-and-council-tax-support/discretionary-housing-council-tax-support-payments/discretionary-housing-payment-policy-2019-2020"
+    "url": "/housing/benefits-and-assistance/housing-benefit-and-council-tax-support/discretionary-housing-council-tax-support-payments/discretionary-housing-payment-policy-2019-2020"
   },
   {
     "ID": 2263,
     "post_name": "discretionary-council-tax-support-payment-policy-2019-20",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/housing/housing-benefit-and-council-tax-support/discretionary-housing-council-tax-support-payments/discretionary-council-tax-support-payment-policy-2019-20"
+    "url": "/housing/benefits-and-assistance/housing-benefit-and-council-tax-support/discretionary-housing-council-tax-support-payments/discretionary-council-tax-support-payment-policy-2019-20"
   },
   {
     "ID": 2461,
