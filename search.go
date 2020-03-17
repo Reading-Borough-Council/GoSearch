@@ -22,6 +22,7 @@ import (
 )
 
 const SEARCHLIMIT = 256
+const MINTERM = 3
 
 type search struct {
 	Root    *node
@@ -111,9 +112,16 @@ func (search *search) DoSimpleConcurrentSearch(query string, count int) []result
 	terms := strings.Split(query, " ")
 
 	temp := make([]result, 0)
+	output := make([]result, 0)
+
+	if len(terms[0]) < MINTERM {
+		return output
+	}
 
 	//get results for first term
 	termResults := search.WordSearch(terms[0])
+
+	resultCount := 0
 
 	//for word/partial results i.e (app) => {application,applicator,appropo,...}
 	for _, termResult := range termResults {
@@ -130,12 +138,16 @@ func (search *search) DoSimpleConcurrentSearch(query string, count int) []result
 				location)
 
 			temp = append(temp, *newResult)
+			resultCount += 1
+		}
+
+		if resultCount > RESULTLIMIT {
+			break
 		}
 	}
 
 	//now keep matching following terms
 	followerCount := len(terms) - 1
-	output := make([]result, 0)
 
 	if followerCount > 0 {
 		followers := terms[1:]
