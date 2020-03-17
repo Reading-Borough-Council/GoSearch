@@ -2,7 +2,6 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
 	"log"
 	"net/http"
 	"strconv"
@@ -63,8 +62,7 @@ func (a *App) searchHandler(w http.ResponseWriter, r *http.Request) {
 	searchResults := make([]SearchResult, 0)
 
 	if vars["query"] != "" {
-		fmt.Println(vars["query"])
-		fmt.Println(len(vars["query"]))
+
 		if len(vars["query"]) < MINTERM+1 {
 			respondWithJSON(w, http.StatusOK, searchResults)
 			return
@@ -94,6 +92,7 @@ func (a *App) fullSearchHandler(w http.ResponseWriter, r *http.Request) {
 	if vars["query"] != "" {
 		if len(vars["query"]) < MINTERM+1 {
 			respondWithJSON(w, http.StatusOK, searchResults)
+			return
 		}
 	}
 	rawResults := a.Search.DoStemmedConcurrentSearch(strings.ToLower(vars["query"]), RESULTLIMIT)
@@ -130,6 +129,5 @@ func respondWithJSON(w http.ResponseWriter, code int, payload interface{}) {
 	response, _ := json.Marshal(payload)
 
 	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(code)
 	w.Write(response)
 }
