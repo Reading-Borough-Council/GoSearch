@@ -12,6 +12,7 @@ import (
 )
 
 const RESULTLIMIT = 16
+const CONTENTLENGTH = 252
 
 type App struct {
 	Router *mux.Router
@@ -89,6 +90,10 @@ func (a *App) fullSearchHandler(w http.ResponseWriter, r *http.Request) {
 			title := a.Search.getArticleTitle(loc.ID)
 			url := a.Search.getArticleURL(loc.ID)
 			content := a.Search.getArticleContent(loc.ID)
+
+			if len(content) > CONTENTLENGTH {
+				content = content[:CONTENTLENGTH] + "..."
+			}
 			searchResult := FullSearchResult{ID: loc.ID, Title: title, Content: content, URL: url}
 			searchResults = append(searchResults, searchResult)
 		}
