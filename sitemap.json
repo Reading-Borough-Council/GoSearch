@@ -813,10 +813,10 @@
   },
   {
     "ID": 799,
-    "post_name": "claiming-housing-benefit-and-or-council-tax-support",
+    "post_name": "counciltaxsupport",
     "post_type": "page",
     "post_status": "publish",
-    "url": "/housing/benefits-and-assistance/claiming-housing-benefit-and-or-council-tax-support"
+    "url": "/housing/benefits-and-assistance/housing-benefit-and-council-tax-support/counciltaxsupport"
   },
   {
     "ID": 800,
@@ -6403,5 +6403,47 @@
     "post_type": "news",
     "post_status": "publish",
     "url": "/news/stronger-together-project-showcases-success"
+  },
+  {
+    "ID": 6740,
+    "post_name": "counciltaxaccount",
+    "post_type": "page",
+    "post_status": "publish",
+    "url": "/housing/council-tax/counciltaxaccount"
+  },
+  {
+    "ID": 6742,
+    "post_name": "counciltaxhelp",
+    "post_type": "page",
+    "post_status": "publish",
+    "url": "/housing/council-tax/counciltaxhelp"
+  },
+  {
+    "ID": 6745,
+    "post_name": "counciltaxbudget",
+    "post_type": "page",
+    "post_status": "publish",
+    "url": "/housing/council-tax/counciltaxbudget"
+  },
+  {
+    "ID": 6752,
+    "post_name": "movinghome",
+    "post_type": "page",
+    "post_status": "publish",
+    "url": "/housing/council-tax/movinghome"
+  },
+  {
+    "ID": 6754,
+    "post_name": "counciltaxdiscounts",
+    "post_type": "page",
+    "post_status": "publish",
+    "url": "/housing/council-tax/counciltaxdiscounts"
+  },
+  {
+    "ID": 6757,
+    "post_name": "counciltaxbands",
+    "post_type": "page",
+    "post_status": "publish",
+    "url": "/housing/council-tax/counciltaxbands"
   }
 ]

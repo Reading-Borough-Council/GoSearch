@@ -21,6 +21,8 @@ import (
 	"github.com/rookii/paicehusk"
 )
 
+const SEARCHLIMIT = 256
+
 type search struct {
 	Root    *node
 	Pages   []page
@@ -513,6 +515,8 @@ func (search *search) getArticleTitle(id int) string {
 	var low uint32 = uint32(0)
 	var index uint32 = max
 
+	var countOut uint16 = SEARCHLIMIT
+
 	for search.Pages[index].ID != id {
 		//fmt.Printf("Search for %d @ index %d: %d (low: %d, max: %d) \n", id, index, search.Pages[index].ID, low, max)
 
@@ -525,6 +529,11 @@ func (search *search) getArticleTitle(id int) string {
 		}
 	}
 
+	countOut -= 1
+	if countOut == 0 {
+		return "-"
+	}
+
 	return search.Pages[index].Title
 }
 
@@ -533,6 +542,8 @@ func (search *search) getArticleURL(id int) string {
 	var max uint32 = uint32(len(search.SiteMap) - 1)
 	var low uint32 = uint32(0)
 	var index uint32 = max
+
+	var countOut uint16 = SEARCHLIMIT
 
 	for search.SiteMap[index].ID != id {
 		//fmt.Printf("Search for %d @ index %d: %d (low: %d, max: %d) \n", id, index, search.Pages[index].ID, low, max)
@@ -546,6 +557,11 @@ func (search *search) getArticleURL(id int) string {
 		}
 	}
 
+	countOut -= 1
+	if countOut == 0 {
+		return "-"
+	}
+
 	return search.SiteMap[index].URL
 }
 
@@ -554,6 +570,8 @@ func (search *search) getArticleContent(id int) string {
 	var max uint32 = uint32(len(search.Pages) - 1)
 	var low uint32 = uint32(0)
 	var index uint32 = max
+
+	var countOut uint16 = SEARCHLIMIT
 
 	for search.Pages[index].ID != id {
 		//fmt.Printf("Search for %d @ index %d: %d (low: %d, max: %d) \n", id, index, search.Pages[index].ID, low, max)
@@ -565,6 +583,11 @@ func (search *search) getArticleContent(id int) string {
 			low = index
 			index = ((max + low) >> 1)
 		}
+	}
+
+	countOut -= 1
+	if countOut == 0 {
+		return "-"
 	}
 
 	return search.Pages[index].Content
