@@ -229,14 +229,14 @@ func (search *search) DoStemmedConcurrentSearch(query string, count int) []resul
 	//get results for first term
 	termResults := search.WordSearch(terms[0])
 
-	count := 0
+	termResultCount := 0
 
 	//now keep matching following terms
 	followerCount := len(terms) - 1
 
 	//for word/partial results i.e (app) => {application,applicator,appropo,...}
 	for _, termResult := range termResults {
-		if count > SEARCHLIMIT {
+		if termResultCount > SEARCHLIMIT {
 			break
 		}
 
@@ -253,7 +253,7 @@ func (search *search) DoStemmedConcurrentSearch(query string, count int) []resul
 				location)
 
 			temp = append(temp, *newResult)
-			count += 1
+			termResultCount += 1
 		}
 
 	}
