@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"log"
 	"net/http"
 	"strconv"
@@ -59,8 +60,17 @@ func (a *App) initializeRoutes() {
 
 func (a *App) searchHandler(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
-	rawResults := a.Search.DoStemmedConcurrentSearch(strings.ToLower(vars["query"]), RESULTLIMIT)
 	searchResults := make([]SearchResult, 0)
+
+	if vars["query"] != "" {
+		fmt.Println(vars["query"])
+		fmt.Println(len(vars["query"]))
+		if len(vars["query"]) < MINTERM+1 {
+			respondWithJSON(w, http.StatusOK, searchResults)
+			return
+		}
+	}
+	rawResults := a.Search.DoStemmedConcurrentSearch(strings.ToLower(vars["query"]), RESULTLIMIT)
 
 	//array of possible words with ids
 	//[{apple: [12, 43, 62]}, {application: [1, 43, 52]}]
@@ -79,8 +89,14 @@ func (a *App) searchHandler(w http.ResponseWriter, r *http.Request) {
 
 func (a *App) fullSearchHandler(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
-	rawResults := a.Search.DoStemmedConcurrentSearch(strings.ToLower(vars["query"]), RESULTLIMIT)
 	searchResults := make([]FullSearchResult, 0)
+
+	if vars["query"] != "" {
+		if len(vars["query"]) < MINTERM+1 {
+			respondWithJSON(w, http.StatusOK, searchResults)
+		}
+	}
+	rawResults := a.Search.DoStemmedConcurrentSearch(strings.ToLower(vars["query"]), RESULTLIMIT)
 
 	//array of possible words with ids
 	//[{apple: [12, 43, 62]}, {application: [1, 43, 52]}]
