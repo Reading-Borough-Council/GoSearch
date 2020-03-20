@@ -460,10 +460,16 @@ func (search *search) PopulateJSONStemmed(dataFilePath, siteMapPath string) {
 		}
 
 		//now add for each word of content type
-		// content := strings.Fields(pages[p].Content)
-		// for _, word := range content {
-		// 	search.AddWord(word, pages[p].ID)
-		// }
+		content := strings.Fields(search.Pages[p].Content)
+
+		for index, word := range content {
+			//now stem title
+			wordStem := paicehusk.DefaultRules.Stem(word)
+
+			location := location{ID: search.Pages[p].ID, Position: index}
+
+			search.AddWord(strings.ToLower(wordStem), location)
+		}
 	}
 }
 
