@@ -13,7 +13,7 @@ import (
 )
 
 const RESULTLIMIT = 16
-const CONTENTLENGTH = 252
+const CONTENTLENGTH = 1023
 
 type App struct {
 	Router *mux.Router
