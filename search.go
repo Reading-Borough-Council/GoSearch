@@ -237,6 +237,7 @@ func (search *search) DoStemmedConcurrentSearch(query string, count int) []resul
 	//for word/partial results i.e (app) => {application,applicator,appropo,...}
 	for _, termResult := range termResults {
 		if termResultCount > SEARCHLIMIT {
+			fmt.Println("!Initial Term Limit")
 			break
 		}
 

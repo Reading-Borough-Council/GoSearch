@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"log"
 	"net/http"
 	"strconv"
@@ -60,6 +61,7 @@ func (a *App) initializeRoutes() {
 func (a *App) searchHandler(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	searchResults := make([]SearchResult, 0)
+	fmt.Println(vars["query"])
 
 	if vars["query"] != "" {
 
@@ -88,6 +90,7 @@ func (a *App) searchHandler(w http.ResponseWriter, r *http.Request) {
 func (a *App) fullSearchHandler(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	searchResults := make([]FullSearchResult, 0)
+	fmt.Println(vars["query"])
 
 	if vars["query"] != "" {
 		if len(vars["query"]) < MINTERM+1 {
