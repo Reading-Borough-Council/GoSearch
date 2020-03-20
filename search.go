@@ -22,7 +22,7 @@ import (
 )
 
 const SEARCHLIMIT = 256
-const MINTERM = 3
+const MINTERM = 2
 
 type search struct {
 	Root    *node
