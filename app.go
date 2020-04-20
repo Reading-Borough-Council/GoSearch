@@ -37,8 +37,8 @@ func (a *App) Initialize(dataFile, siteMapFile string) {
 	a.Search = NewSearch()
 	a.Router = mux.NewRouter()
 
-	//a.Search.PopulateJSON(dataFile, siteMapFile)
-	a.Search.PopulateJSONStemmed(dataFile, siteMapFile)
+	a.Search.PopulateJSON(dataFile, siteMapFile)
+	//a.Search.PopulateJSONStemmed(dataFile, siteMapFile)
 
 	a.initializeRoutes()
 }
@@ -64,13 +64,13 @@ func (a *App) searchHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(vars["query"])
 
 	if vars["query"] != "" {
-
 		if len(vars["query"]) < MINTERM+1 {
 			respondWithJSON(w, http.StatusOK, searchResults)
 			return
 		}
 	}
-	rawResults := a.Search.DoStemmedConcurrentSearch(strings.ToLower(vars["query"]), RESULTLIMIT)
+
+	rawResults := a.Search.DoSimpleConcurrentSearch(strings.ToLower(vars["query"]), RESULTLIMIT)
 
 	//array of possible words with ids
 	//[{apple: [12, 43, 62]}, {application: [1, 43, 52]}]
@@ -98,7 +98,8 @@ func (a *App) fullSearchHandler(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 	}
-	rawResults := a.Search.DoStemmedConcurrentSearch(strings.ToLower(vars["query"]), RESULTLIMIT)
+
+	rawResults := a.Search.DoSimpleConcurrentSearch(strings.ToLower(vars["query"]), RESULTLIMIT)
 
 	//array of possible words with ids
 	//[{apple: [12, 43, 62]}, {application: [1, 43, 52]}]

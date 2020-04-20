@@ -368,6 +368,10 @@ func getTree(node *node, str string) []result {
 	if len(node.Children) > 0 {
 		for _, child := range node.Children {
 			result = append(result, getTree(child, str+string(child.Value))...)
+
+			if len(result) > 10 {
+				return result
+			}
 		}
 	}
 

@@ -6,9 +6,12 @@ import (
 )
 
 func TestSearch(t *testing.T) {
+	var Search = NewSearch()
 
-	search := NewSearch()
-	search.PopulateJSON("testdata.json", "testsitemap.json")
+	//a.Search.PopulateJSON(dataFile, siteMapFile)
+	Search.PopulateJSONStemmed(dataFile, siteMapFile)
+
+	Search.initializeRoutes()
 
 	text := "so"
 
