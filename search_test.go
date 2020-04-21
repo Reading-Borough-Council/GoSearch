@@ -1,36 +1,28 @@
 package main
 
 import (
-	"fmt"
+	"strings"
 	"testing"
 )
 
 func TestSearch(t *testing.T) {
-	var Search = NewSearch()
+	search := NewSearch()
+	search.PopulateJSON("data.json", "sitemap.json")
+	searchResults := make([]SearchResult, 0)
 
-	//a.Search.PopulateJSON(dataFile, siteMapFile)
-	Search.PopulateJSONStemmed(dataFile, siteMapFile)
+	rawResults := search.DoSimpleConcurrentSearch(strings.ToLower("appl"), 100)
 
-	Search.initializeRoutes()
+	//array of possible words with ids
+	//[{apple: [12, 43, 62]}, {application: [1, 43, 52]}]
 
-	text := "so"
-
-	result := search.DoSimpleConcurrentSearch(text, 1)
-	fmt.Println(result)
-
-	expected := [1]string{"society"}
-
-	fmt.Println("Run Tests w/ search: " + text)
-	for _, str := range expected {
-		found := false
-		for _, res := range result {
-			if str == res.Name {
-				found = true
-			}
-		}
-
-		if !found {
-			t.Error("Fail, didn't get " + str)
+	for _, r := range rawResults { //for each word
+		for _, loc := range r.Location { //for each id
+			title := search.getArticleTitle(loc.ID)
+			url := search.getArticleURL(loc.ID)
+			searchResult := SearchResult{ID: loc.ID, Rendered: title, URL: url}
+			searchResults = append(searchResults, searchResult)
 		}
 	}
+
+	println("test finished")
 }
