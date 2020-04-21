@@ -557,11 +557,11 @@ func (search *search) getArticleTitle(id int) string {
 			low = index
 			index = ((max + low) >> 1)
 		}
-	}
 
-	countOut -= 1
-	if countOut == 0 {
-		return "-"
+		countOut -= 1
+		if countOut == 0 {
+			return "-"
+		}
 	}
 
 	return search.Pages[index].Title
@@ -585,12 +585,14 @@ func (search *search) getArticleURL(id int) string {
 			low = index
 			index = ((max + low) >> 1)
 		}
+
+		countOut -= 1
+		if countOut == 0 {
+			return "-"
+		}
 	}
 
-	countOut -= 1
-	if countOut == 0 {
-		return "-"
-	}
+
 
 	return search.SiteMap[index].URL
 }
