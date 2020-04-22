@@ -64,7 +64,7 @@ func (a *App) searchHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(vars["query"])
 
 	if vars["query"] != "" {
-		if len(vars["query"]) < MINTERM+1 {
+		if len(vars["query"]) < MINTERM {
 			respondWithJSON(w, http.StatusOK, searchResults)
 			return
 		}
@@ -93,7 +93,7 @@ func (a *App) fullSearchHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(vars["query"])
 
 	if vars["query"] != "" {
-		if len(vars["query"]) < MINTERM+1 {
+		if len(vars["query"]) < MINTERM {
 			respondWithJSON(w, http.StatusOK, searchResults)
 			return
 		}
