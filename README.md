@@ -13,6 +13,11 @@ ID: *article id
 Text: "I like blue cheese"
 URL: x/food/cheese
 
+## Endpoints
+/v1/search/short/{query}
+/v1/search/full/{query}
+/v1/ping
+
 ## Structure
 Builds search trie/tree of each word in data with the article id and sentence and article position.
 First strips all tags/html/colourcodes
